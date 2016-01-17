@@ -1,0 +1,14 @@
+PODS:
+  - AfroLayout (0.1.0)
+
+DEPENDENCIES:
+  - AfroLayout (from `../`)
+
+EXTERNAL SOURCES:
+  AfroLayout:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  AfroLayout: b6a4bd0012ed9d17ff45497d6436d98620fee6e1
+
+COCOAPODS: 0.39.0

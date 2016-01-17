@@ -1,0 +1,6 @@
+framework module AfroLayout {
+  umbrella header "AfroLayout-umbrella.h"
+
+  export *
+  module * { export * }
+}
