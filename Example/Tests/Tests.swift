@@ -1,6 +1,6 @@
 import UIKit
 import XCTest
-import AfroLayout
+@testable import AfroLayout
 
 class Tests: XCTestCase {
     
@@ -13,17 +13,40 @@ class Tests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
+
+	func testValidateHorizontalAttributes() {
+		let view = UIView()
+		XCTAssert(view.validateHorizontalAttributes(forStackViews: [UIView()], horizontalAttributes: [[]]))
+		XCTAssertFalse(view.validateHorizontalAttributes(forStackViews: [UIView()], horizontalAttributes: []))
+	}
+	
+	func testValidateHorizontalRelations() {
+		let attributes = [[NSLayoutAttribute.Top]]
+		let view = UIView()
+		XCTAssert(view.validateHorizontalRelations(attributes, horizontalRelations: [[]]))
+		XCTAssertFalse(view.validateHorizontalRelations(attributes, horizontalRelations: []))
+	}
+	
+	func testValidateHorizontalPadding() {
+		let attributes = [[NSLayoutAttribute.Top]]
+		let view = UIView()
+		XCTAssert(view.validateHorizontalPadding(attributes, horizontalPadding: [[]]))
+		XCTAssertFalse(view.validateHorizontalPadding(attributes, horizontalPadding: []))
+	}
+	
+	func testValidateViews() {
+		let view = UIView()
+		XCTAssert(view.validateViews(forAttributes: [.Top], views: [UIView()]))
+		XCTAssertFalse(view.validateViews(forAttributes: [.Top], views: []))
+	}
+	
+	
+	
 }
+
+extension UIView {
+	func abortWithMessage(message: String) {
+		
+	}
+}
+
