@@ -20,14 +20,14 @@ AfroLayout is a swift library that puts the auto back into AutoLayout.
 
 ##How it began
 
-For simple projects with simple UI and UX, storyboards are perfect. They can be thrown together quickly and allow for quick feedback to design changes. It also allows you to make customisations to elements on the storyboards with the use of `IBOutlets` and `IBActions`. However as a project grows and the UI becomes more complex your storyboards can introduce bad practices like showing and hiding elements based on some state. They can also become misleading because a glance at a storyboard doesn't illustrate the different states a view can have and as a result give emphasis to one particular state and makes the others difficult to change. 
+For simple projects with simple UI and UX, storyboards are perfect. They can be thrown together quickly and allow for quick feedback to design changes. It also allows you to make customisations to elements on the storyboards with the use of `IBOutlets` and `IBActions`. However as a project grows and the UI becomes more complex your storyboards can introduce bad practices like showing and hiding elements based on some state. They can also become misleading because a glance at a storyboard doesn't illustrate the different states a view can have and as a result give emphasis to one particular state and makes the others difficult to change.
 
 So if you go full circle and move your view layout code into your source files you end up with methods like this (and much worse in some cases :grimacing:)
 ![Screenshot of update constraints method](ReadmeAssets/constraints.png?raw=true)
 
 The final nail in the coffin is if you require animation. To do animations require keeping reference to the appropriate constraints and doing the UIView.animationwithduration dance remembering all the [caveats](http://stackoverflow.com/questions/18363399/autolayout-animation-issue). The advantages of using Autolayout all of sudden start to feel not worth the hassle.
 
-Enter AutoAutoLayout. This library reduces the amount of work you need to do to maintain constraints in code. It also lets you perform animations in your view while still maintaining the powers of the autolayout constraint engine but with the effort of animating frames. 
+Enter AfroLayout. This library reduces the amount of work you need to do to maintain constraints in code. It also lets you perform animations in your view while still maintaining the powers of the autolayout constraint engine but with the effort of animating frames.
 
 ## Requirements
 
@@ -43,7 +43,7 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'MyApp' do
-	pod 'AutoAutoLayout', :git => 'https://github.com/va3093/autoautolayout.git'
+	pod 'AfroLayout', :git => 'https://github.com/va3093/afrolayout.git'
 end
 ```
 Note that this requires CocoaPods version 36, and your iOS deployment target to be at least 8.0:
@@ -53,13 +53,13 @@ Note that this requires CocoaPods version 36, and your iOS deployment target to 
 
 To use this library in your project manually you may:  
 
-1. for Projects, just drag AutoAutoLayout.swift to the project tree
+1. for Projects, just drag AfroLayout.swift to the project tree
 
 ## Usage
 
 #### Everyday constraints
 
-AutoAutoLayout has [one fundamental method](#the-bedrock-of-autoautolayout) that allows for easy adding of constraints to views. This method has been further abstracted into helper methods that apply default values for commonly used constraints. If any of these methods don't suit your needs you can alway fall back to the [custom constraints method](#the-bedrock-of-autoautolayout).
+AfroLayout has [one fundamental method](#the-bedrock-of-autoautolayout) that allows for easy adding of constraints to views. This method has been further abstracted into helper methods that apply default values for commonly used constraints. If any of these methods don't suit your needs you can alway fall back to the [custom constraints method](#the-bedrock-of-autoautolayout).
 
 ##### Constrain to top of view
 [Todo]
@@ -103,45 +103,45 @@ Almost all of AfroLayout is built around the following method:
         	padding: [CGFloat]? = nil,
 		priorities: [UILayoutPriority]? = nil)
         	-> [NSLayoutConstraint] {
-			//... 
+			//...
 		}
 ```
 This method allows you to turn this:
 ```swift
 	self.wrapperView.addConstraints([
 			NSLayoutConstraint(
-			item: view1, 
-			attribute: NSLayoutAttribute.Top, 
-			relatedBy: NSLayoutRelation.Equal, 
-			toItem: self.wrapperView, 
-			attribute: NSLayoutAttribute.Top, 
-			multiplier: 1.0, 
+			item: view1,
+			attribute: NSLayoutAttribute.Top,
+			relatedBy: NSLayoutRelation.Equal,
+			toItem: self.wrapperView,
+			attribute: NSLayoutAttribute.Top,
+			multiplier: 1.0,
 			constant: 0.0),
-			
+
 			NSLayoutConstraint(
-			item: view1, 
-			attribute: NSLayoutAttribute.Leading, 
-			relatedBy: NSLayoutRelation.Equal, 
-			toItem: self.wrapperView, 
-			attribute: NSLayoutAttribute.Leading, 
-			multiplier: 1.0, 
+			item: view1,
+			attribute: NSLayoutAttribute.Leading,
+			relatedBy: NSLayoutRelation.Equal,
+			toItem: self.wrapperView,
+			attribute: NSLayoutAttribute.Leading,
+			multiplier: 1.0,
 			constant: 0.0),
-			
+
 			NSLayoutConstraint(
-			item: view1, 
-			attribute: NSLayoutAttribute.Trailing, 
-			relatedBy: NSLayoutRelation.Equal, 
-			toItem: self.wrapperView, 
-			attribute: NSLayoutAttribute.Trailing, 
-			multiplier: 1.0, 
+			item: view1,
+			attribute: NSLayoutAttribute.Trailing,
+			relatedBy: NSLayoutRelation.Equal,
+			toItem: self.wrapperView,
+			attribute: NSLayoutAttribute.Trailing,
+			multiplier: 1.0,
 			constant: 0.0),
-			
-			NSLayoutConstraint(item: view1, 
-			attribute: NSLayoutAttribute.Bottom, 
-			relatedBy: NSLayoutRelation.Equal, 
-			toItem: self.wrapperView, 
-			attribute: NSLayoutAttribute.Bottom, 
-			multiplier: 1.0, 
+
+			NSLayoutConstraint(item: view1,
+			attribute: NSLayoutAttribute.Bottom,
+			relatedBy: NSLayoutRelation.Equal,
+			toItem: self.wrapperView,
+			attribute: NSLayoutAttribute.Bottom,
+			multiplier: 1.0,
 			constant: 0.0)
 			])
 ```
