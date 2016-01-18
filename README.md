@@ -59,7 +59,7 @@ To use this library in your project manually you may:
 
 #### Everyday constraints
 
-AutoAutoLayout has [one fundamental method](#the-bedrock-of-autoautolayout) that allows for easy adding of constraints to views. This method has been further abstracted into helper methods that apply default values for commonly used constraints. If any of these methods don't suit your needs you can alway fall back to the [custom constraints method](#the-bedrock-of-autoautolayout).
+AfroLayout has [one fundamental method](#the-bedrock-of-afroLayout) that allows for easy adding of constraints to views. This method has been further abstracted into helper methods that apply default values for commonly used constraints. If any of these methods don't suit your needs you can alway fall back to the [custom constraints method](#the-bedrock-of-afroLayout).
 
 ##### Constrain to top of view
 [Todo]
