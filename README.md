@@ -27,7 +27,7 @@ So if you go full circle and move your view layout code into your source files y
 
 The final nail in the coffin is if you require animation. To do animations require keeping reference to the appropriate constraints and doing the UIView.animationwithduration dance remembering all the [caveats](http://stackoverflow.com/questions/18363399/autolayout-animation-issue). The advantages of using Autolayout all of sudden start to feel not worth the hassle.
 
-Enter AutoAutoLayout. This library reduces the amount of work you need to do to maintain constraints in code. It also lets you perform animations in your view while still maintaining the powers of the autolayout constraint engine but with the effort of animating frames. 
+Enter AfroLayout. This library reduces the amount of work you need to do to maintain constraints in code. It also lets you perform animations in your view while still maintaining the powers of the autolayout constraint engine but with the effort of animating frames. 
 
 ## Requirements
 
@@ -37,13 +37,13 @@ Enter AutoAutoLayout. This library reduces the amount of work you need to do to 
 ##Integration
 
 ####CocoaPods (iOS 8+, OS X 10.9+)
-You can use [Cocoapods](http://cocoapods.org/) to install `SwiftyJSON`by adding it to your `Podfile`:
+You can use [Cocoapods](http://cocoapods.org/) to install `AfroLayout`by adding it to your `Podfile`:
 ```ruby
 platform :ios, '8.0'
 use_frameworks!
 
 target 'MyApp' do
-	pod 'AutoAutoLayout', :git => 'https://github.com/va3093/autoautolayout.git'
+	pod 'AfroLayout', :git => 'https://github.com/va3093/AfroLayout.git'
 end
 ```
 Note that this requires CocoaPods version 36, and your iOS deployment target to be at least 8.0:
@@ -53,7 +53,7 @@ Note that this requires CocoaPods version 36, and your iOS deployment target to 
 
 To use this library in your project manually you may:  
 
-1. for Projects, just drag AutoAutoLayout.swift to the project tree
+1. for Projects, just drag AfroLayout.swift to the project tree
 
 ## Usage
 
