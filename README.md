@@ -93,16 +93,16 @@ AfroLayout has [one fundamental method](#the-bedrock-of-afroLayout) that allows 
 Almost all of AfroLayout is built around the following method:
 
 ```swift
-	 public func addCustomConstraints(
-        	inView superView: UIView,
-        	toViews views: [UIView]? = nil,
-        	selfAttributes: [NSLayoutAttribute],
-		relations: [NSLayoutRelation]? = nil,
-        	otherViewAttributes: [NSLayoutAttribute]? = nil,
+	public func addCustomConstraints(
+         	inView superView: UIView,
+         	toViews views: [UIView]? = nil,
+          	selfAttributes: [NSLayoutAttribute],
+                relations: [NSLayoutRelation]? = nil,
+         	otherViewAttributes: [NSLayoutAttribute]? = nil,
 		multipliers: [CGFloat]? = nil,
-        	padding: [CGFloat]? = nil,
+         	padding: [CGFloat]? = nil,
 		priorities: [UILayoutPriority]? = nil)
-        	-> [NSLayoutConstraint] {
+         	-> [NSLayoutConstraint] {
 			//... 
 		}
 ```
