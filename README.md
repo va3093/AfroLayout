@@ -1,6 +1,6 @@
 # AfroLayout
 
-[![CI Status](http://img.shields.io/travis/Wilhelm/AfroLayout.svg?style=flat)](https://travis-ci.org/va3093/AfroLayout)
+[![Build Status](https://travis-ci.org/va3093/AfroLayout.svg?branch=master)](https://travis-ci.org/va3093/AfroLayout)
 [![Version](https://img.shields.io/cocoapods/v/AfroLayout.svg?style=flat)](http://cocoapods.org/pods/AfroLayout)
 [![License](https://img.shields.io/cocoapods/l/AfroLayout.svg?style=flat)](http://cocoapods.org/pods/AfroLayout)
 [![Platform](https://img.shields.io/cocoapods/p/AfroLayout.svg?style=flat)](http://cocoapods.org/pods/AfroLayout)
