@@ -56,10 +56,16 @@ class VerticalStackingViewController: UIViewController {
 	
 	func stackWrapperView1() {
 		self.view.addSubview(self.wrapperView1)
-		self.wrapperView1.addCustomConstraints(inView: self.view, selfAttributes: [ .Leading, .Trailing], padding: [ 8.0, -8.0])
-		self.wrapperView1.addConstraintToTopLayoutGuide(inView: self.view, topLayoutGuide: self.topLayoutGuide, selfAttribute: .Top, padding: 8.0)
+		self.wrapperView1.addCustomConstraints(inView: self.view, toViews: [self.topLayoutGuide, self.view,self.view], selfAttributes: [.Top, .Leading, .Trailing], otherViewAttributes: [.Bottom, .Leading, .Trailing], padding: [8.0, 8.0, -8.0])
 		
-		let stackedViews = [view1(), view2(), view3()]
+		let view1 = self.view1()
+		view1.addDimensions(width: 100.0)
+		let view2 = self.view2()
+		view2.addDimensions(width: 200.0)
+		let view3 = self.view3()
+		view3.addDimensions(width: 300.0)
+		
+		let stackedViews = [view1, view2, view3]
 		self.wrapperView1.addSubviews(stackedViews)
 		self.wrapperView1.stackViews(stackedViews,
 			horizontalAttributes:[[.Leading, .Trailing], [.Leading, .Trailing], [.Leading, .Trailing]],
