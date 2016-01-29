@@ -33,7 +33,8 @@ extension UIView {
 		horizontalPaddings: [[CGFloat]]? = nil,
 		gapPadding: CGFloat = 8.0,
 		topPadding: CGFloat = 0.0,
-		bottomPadding: CGFloat = 0.0
+		bottomPadding: CGFloat = 0.0,
+		bottomRelation: NSLayoutRelation = .Equal
 		) {
 			var lastView: UIView?
 			let hAttributes: [[NSLayoutAttribute]] = self.getHorizontalAttributes(forStackViews: stackedViews, horizontalAttributes: horizontalAttributes)
@@ -52,7 +53,7 @@ extension UIView {
 			}
 			
 			if let nLastView = lastView {
-				nLastView.addCustomConstraints(inView: self, selfAttributes: [.Bottom], otherViewAttributes: [.Bottom], relations: [.Equal], padding: [-bottomPadding])
+				nLastView.addCustomConstraints(inView: self, selfAttributes: [.Bottom], otherViewAttributes: [.Bottom], relations: [bottomRelation], padding: [-bottomPadding])
 			}
 			
 			
