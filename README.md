@@ -37,7 +37,7 @@ Enter AfroLayout. This library reduces the amount of work you need to do to main
 ##Integration
 
 ####CocoaPods (iOS 8+, OS X 10.9+)
-You can use [Cocoapods](http://cocoapods.org/) to install `AfroLayout`by adding it to your `Podfile`:
+You can use [CocoaPods](http://cocoapods.org/) to install `AfroLayout`by adding it to your `Podfile`:
 ```ruby
 platform :ios, '8.0'
 use_frameworks!
