@@ -58,8 +58,42 @@ extension UIView {
 			
 			
 	}
+    
+    public func stackHorizontallViews(
+        stackedViews: [UIView],
+        leftLayoutGuide: UILayoutSupport? = nil,
+        verticalAttributes: [[NSLayoutAttribute]]? = nil,
+        verticalRelations: [[NSLayoutRelation]]? = nil,
+        verticalPaddings: [[CGFloat]]? = nil,
+        gapPadding: CGFloat = 8.0,
+        leftPadding: CGFloat = 0.0,
+        rightPadding: CGFloat = 0.0,
+        rightRelation: NSLayoutRelation = .Equal
+        ) {
+            var lastView: UIView?
+            let vAttributes: [[NSLayoutAttribute]] = self.getVerticalAttributes(forStackViews: stackedViews, verticalAttributes: verticalAttributes)
+            let vRelations: [[NSLayoutRelation]] = self.getVerticalRelations(vAttributes, verticalRelations: verticalRelations)
+            let vPadding: [[CGFloat]] = self.getVerticalPadding(vAttributes, verticalPadding: verticalPaddings)
+            
+            for index in 0...(stackedViews.count - 1) {
+                if let nLastView = lastView {
+                    
+                    stackedViews[index].addCustomConstraints(inView: self, toViews: [nLastView, self, self], selfAttributes: [NSLayoutAttribute.Left] + vAttributes[index], otherViewAttributes: [NSLayoutAttribute.Right] + vAttributes[index], relations: [NSLayoutRelation.Equal] + vRelations[index], padding: [gapPadding] + vPadding[index])
+                    
+                } else {
+                    stackedViews[index].addCustomConstraints(inView: self, toViews: leftLayoutGuide == nil ? nil : [leftLayoutGuide!, self, self], selfAttributes: [NSLayoutAttribute.Left] + vAttributes[index], otherViewAttributes: (leftLayoutGuide == nil ?  [NSLayoutAttribute.Left] : [NSLayoutAttribute.Right]) + vAttributes[index], relations: [NSLayoutRelation.Equal] + vRelations[index], padding: [leftPadding] + vPadding[index])
+                }
+                lastView = stackedViews[index]
+            }
+            
+            if let nLastView = lastView {
+                nLastView.addCustomConstraints(inView: self, selfAttributes: [.Right], otherViewAttributes: [.Right], relations: [rightRelation], padding: [-rightPadding])
+            }
+            
+            
+    }
 	
-	
+	//Horizontal
 	func getHorizontalAttributes(forStackViews stackViews: [UIView], horizontalAttributes: [[NSLayoutAttribute]]?) -> [[NSLayoutAttribute]]{
 		if let hAttributes = horizontalAttributes {
 			self.validateHorizontalAttributes(forStackViews: stackViews, horizontalAttributes: hAttributes)
@@ -122,6 +156,70 @@ extension UIView {
 		return isValid
 	}
 	
+    //Vertical
+    func getVerticalAttributes(forStackViews stackViews: [UIView], verticalAttributes: [[NSLayoutAttribute]]?) -> [[NSLayoutAttribute]]{
+        if let vAttributes = verticalAttributes {
+            self.validateVerticalAttributes(forStackViews: stackViews, verticalAttributes: vAttributes)
+            return vAttributes
+        }
+        else {
+            return  stackViews.map({ (view: UIView) -> [NSLayoutAttribute] in
+                return [NSLayoutAttribute.CenterY, NSLayoutAttribute.Height]
+            })
+        }
+    }
+    
+    func validateVerticalAttributes(forStackViews stackViews: [UIView], verticalAttributes: [[NSLayoutAttribute]]) -> Bool {
+        let isValid = verticalAttributes.count == stackViews.count
+        if !isValid {
+            self.abortWithMessage("The number of views to stack to should equal the number of vertical attribute sets provided. At the moment you have provided \(stackViews.count) views to stack and \(verticalAttributes.count) vertical attribute sets")
+        }
+        return isValid
+    }
+    
+    func getVerticalRelations(verticalAttributes: [[NSLayoutAttribute]], verticalRelations: [[NSLayoutRelation]]?) -> [[NSLayoutRelation]]{
+        if let vRelations = verticalRelations {
+            self.validateVerticalRelations(verticalAttributes, verticalRelations: vRelations)
+            return vRelations
+        }
+        else {
+            return  verticalAttributes.map({ (attributes: [NSLayoutAttribute]) -> [NSLayoutRelation] in
+                return attributes.map({ (attribute: NSLayoutAttribute) in
+                    return attribute == .CenterY ?  NSLayoutRelation.Equal : NSLayoutRelation.LessThanOrEqual
+                })
+            })
+        }
+    }
+    
+    func validateVerticalRelations(verticalAttributes: [[NSLayoutAttribute]], verticalRelations: [[NSLayoutRelation]]) -> Bool {
+        let isValid = verticalRelations.count == verticalAttributes.count
+        if !isValid {
+            self.abortWithMessage("The number of attribute sets used should match the number of NSLayoutRelation sets passed in")
+        }
+        return isValid
+    }
+    
+    func getVerticalPadding(verticalAttributes: [[NSLayoutAttribute]], verticalPadding: [[CGFloat]]?) -> [[CGFloat]]{
+        if let vPadding = verticalPadding {
+            self.validateVerticalPadding(verticalAttributes, verticalPadding: vPadding)
+            return vPadding
+        }
+        else {
+            return  verticalAttributes.map({ (attributes: [NSLayoutAttribute]) -> [CGFloat] in
+                return attributes.map({ _ in 0.0})
+            })
+        }
+    }
+    
+    func validateVerticalPadding(verticalAttributes: [[NSLayoutAttribute]], verticalPadding: [[CGFloat]]) -> Bool {
+        let isValid = verticalPadding.count == verticalAttributes.count
+        if !isValid {
+            self.abortWithMessage("The number of attribute sets used should match the number of padding sets passed in")
+        }
+        return isValid
+    }
+    
+    //end vertical
 	
 	public func addCustomConstraints(
 		inView superView: UIView,
