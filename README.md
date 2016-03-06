@@ -61,33 +61,44 @@ To use this library in your project manually you may:
 
 AfroLayout has [one fundamental method](#the-bedrock-of-afroLayout) that allows for easy adding of constraints to views. This method has been further abstracted into helper methods that apply default values for commonly used constraints. If any of these methods don't suit your needs you can alway fall back to the [custom constraints method](#the-bedrock-of-afroLayout).
 
+In all the methods below notice the support for UILayoutSupport
+
 ##### Constrain to top of view
+
+See [screenshot]()
+
 ```swift
+	self.wrapperView.constrainToTopOfView(viewController.view, topLayoutGuide: viewController.topLayoutGuide)
 	view1.constrainToTopOfView(self.wrapperView)
 ```
 
 ##### Constrain to top left of view
 ```swift
+	self.wrapperView.constrainToTopLeftOfView(viewController.view, topLayoutGuide: viewController.topLayoutGuide)
 	view1.constrainToTopLeftOfView(self.wrapperView)
 ```
 
 ##### Constrain to top right of view
 ```swift
+	self.wrapperView.constrainToTopRightOfView(viewController.view, topLayoutGuide: viewController.topLayoutGuide)
 	view1.constrainToTopRightOfView(self.wrapperView)
 ```
 
 ##### Constrain to bottom view
 ```swift
+	self.wrapperView.constrainToBottomOfView(viewController.view, bottomLayoutGuide: viewController.bottomLayoutGuide)
 	view1.constrainToBottomOfView(self.wrapperView)
 ```
 
 ##### Constrain to bottom left view
 ```swift
+	self.wrapperView.constrainToBottomLeftOfView(viewController.view, bottomLayoutGuide: viewController.bottomLayoutGuide)
 	view1.constrainToBottomLeftOfView(self.wrapperView)
 ```
 
 ##### Constrain to bottom right view
 ```swift
+	self.wrapperView.constrainToBottomRightOfView(viewController.view, bottomLayoutGuide: viewController.bottomLayoutGuide)
 	view1.constrainToBottomRightOfView(self.wrapperView)
 ```
 
