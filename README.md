@@ -27,7 +27,7 @@ So if you go full circle and move your view layout code into your source files y
 
 The final nail in the coffin is if you require animation. To do animations require keeping reference to the appropriate constraints and doing the UIView.animationwithduration dance remembering all the [caveats](http://stackoverflow.com/questions/18363399/autolayout-animation-issue). The advantages of using Autolayout all of sudden start to feel not worth the hassle.
 
-Enter AfroLayout. This library reduces the amount of work you need to do to maintain constraints in code. It also lets you perform animations in your view while still maintaining the powers of the autolayout constraint engine but with the effort of animating frames. 
+Enter AfroLayout. This library reduces the amount of work you need to do to maintain constraints in code. It also lets you animate your views with the power of the AutoLayout engine and the effort of frame animations 
 
 ## Requirements
 
@@ -37,7 +37,7 @@ Enter AfroLayout. This library reduces the amount of work you need to do to main
 ##Integration
 
 ####CocoaPods (iOS 8+, OS X 10.9+)
-You can use [Cocoapods](http://cocoapods.org/) to install `AfroLayout`by adding it to your `Podfile`:
+You can use [CocoaPods](http://cocoapods.org/) to install `AfroLayout`by adding it to your `Podfile`:
 ```ruby
 platform :ios, '8.0'
 use_frameworks!
@@ -61,32 +61,109 @@ To use this library in your project manually you may:
 
 AfroLayout has [one fundamental method](#the-bedrock-of-afroLayout) that allows for easy adding of constraints to views. This method has been further abstracted into helper methods that apply default values for commonly used constraints. If any of these methods don't suit your needs you can alway fall back to the [custom constraints method](#the-bedrock-of-afroLayout).
 
+In all the methods below notice the support for UILayoutSupport
+
 ##### Constrain to top of view
-[Todo]
+
+See [screenshot](https://github.com/va3093/AfroLayout/blob/master/ReadmeAssets/top.png)
+
+```swift
+	self.wrapperView.constrainToTopOfView(viewController.view, topLayoutGuide: viewController.topLayoutGuide)
+	view1.constrainToTopOfView(self.wrapperView)
+```
 
 ##### Constrain to top left of view
-[Todo]
+
+See [screenshot](https://github.com/va3093/AfroLayout/blob/master/ReadmeAssets/topLeft.png)
+
+```swift
+	self.wrapperView.constrainToTopLeftOfView(viewController.view, topLayoutGuide: viewController.topLayoutGuide)
+	view1.constrainToTopLeftOfView(self.wrapperView)
+```
 
 ##### Constrain to top right of view
-[Todo]
+
+See [screenshot](https://github.com/va3093/AfroLayout/blob/master/ReadmeAssets/topRight.png)
+
+```swift
+	self.wrapperView.constrainToTopRightOfView(viewController.view, topLayoutGuide: viewController.topLayoutGuide)
+	view1.constrainToTopRightOfView(self.wrapperView)
+```
 
 ##### Constrain to bottom view
-[Todo]
+
+See [screenshot](https://github.com/va3093/AfroLayout/blob/master/ReadmeAssets/bottom.png)
+
+```swift
+	self.wrapperView.constrainToBottomOfView(viewController.view, bottomLayoutGuide: viewController.bottomLayoutGuide)
+	view1.constrainToBottomOfView(self.wrapperView)
+```
 
 ##### Constrain to bottom left view
-[Todo]
+
+See [screenshot](https://github.com/va3093/AfroLayout/blob/master/ReadmeAssets/bottomLeft.png)
+
+```swift
+	self.wrapperView.constrainToBottomLeftOfView(viewController.view, bottomLayoutGuide: viewController.bottomLayoutGuide)
+	view1.constrainToBottomLeftOfView(self.wrapperView)
+```
 
 ##### Constrain to bottom right view
-[Todo]
+
+See [screenshot](https://github.com/va3093/AfroLayout/blob/master/ReadmeAssets/bottomRight.png)
+
+```swift
+	self.wrapperView.constrainToBottomRightOfView(viewController.view, bottomLayoutGuide: viewController.bottomLayoutGuide)
+	view1.constrainToBottomRightOfView(self.wrapperView)
+```
 
 ##### Constrain after view
-[Todo]
+
+See [screenshot](https://github.com/va3093/AfroLayout/blob/master/ReadmeAssets/after.png)
+
+```swift
+	view1.constrainAfterView(self.wrapperView, inView: self.view)
+	view2.constrainAfterView(self.wrapperView, inView: self.view, allign: .CenterY, horizontalPadding: 32)
+	view3.constrainAfterView(self.wrapperView, inView: self.view, allign: .Bottom)
+```
 
 ##### Constrain before view
-[Todo]
+
+See [screenshot](https://github.com/va3093/AfroLayout/blob/master/ReadmeAssets/before.png)
+
+```swift
+	view1.constrainBeforeView(self.wrapperView, inView: self.view)
+	view2.constrainBeforeView(self.wrapperView, inView: self.view, allign: .CenterY, horizontalPadding: -32)
+	view3.constrainBeforeView(self.wrapperView, inView: self.view, allign: .Bottom)
+```
+
+##### Constrain below view
+
+See [screenshot](https://github.com/va3093/AfroLayout/blob/master/ReadmeAssets/below.png)
+
+```swift
+	view1.constrainBelowView(self.wrapperView, inView: self.view)
+	view2.constrainBelowView(self.wrapperView, inView: self.view, allign: .CenterX, verticalPadding: 32)
+	view3.constrainBelowView(self.wrapperView, inView: self.view, allign: .Trailing)
+```
+
+##### Constrain On top of view
+
+See [screenshot](https://github.com/va3093/AfroLayout/blob/master/ReadmeAssets/onTop.png)
+
+```swift
+	view1.constrainOnTopOfView(self.wrapperView, inView: self.view)
+	view2.constrainOnTopOfView(self.wrapperView, inView: self.view, allign: .CenterX, verticalPadding: -32)
+	view3.constrainOnTopOfView(self.wrapperView, inView: self.view, allign: .Trailing)
+```
 
 ##### Add bottom constraint
-[Todo]
+
+This is most used when you are laying out views in a scrollView and you just want to quickly add the bottom constraint to the scrollview so that the scrollview knows how to size its content view.
+
+```swift
+	view1.addBottomConstraint(self.scrollView)
+```
 
 #### The bedrock of AfroLayout
 
