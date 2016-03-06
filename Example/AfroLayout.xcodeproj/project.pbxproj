@@ -13,6 +13,17 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		70B7CF13713DF87C4CF59BBB /* Pods_AfroLayout_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F95342381593BF254B514D70 /* Pods_AfroLayout_Tests.framework */; };
 		B67B0C2E5E024834C781F05D /* Pods_AfroLayout_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0260C5DF9B2AD92F9B16BB50 /* Pods_AfroLayout_Example.framework */; };
+		ED14DC7D1C8C351C008B70B5 /* BelowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED14DC7C1C8C351C008B70B5 /* BelowViewController.swift */; };
+		ED14DC7F1C8C3538008B70B5 /* OnTopOfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED14DC7E1C8C3538008B70B5 /* OnTopOfViewController.swift */; };
+		ED2C191B1C8B4984002D58B8 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2C191A1C8B4984002D58B8 /* TopViewController.swift */; };
+		ED2C191D1C8B49C7002D58B8 /* TopLeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2C191C1C8B49C7002D58B8 /* TopLeftViewController.swift */; };
+		ED2C191F1C8B49D8002D58B8 /* TopRightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2C191E1C8B49D8002D58B8 /* TopRightViewController.swift */; };
+		ED2C19211C8B4A35002D58B8 /* BottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2C19201C8B4A35002D58B8 /* BottomViewController.swift */; };
+		ED2C19231C8B4A43002D58B8 /* BottomRightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2C19221C8B4A43002D58B8 /* BottomRightViewController.swift */; };
+		ED2C19251C8B4A50002D58B8 /* BottomLeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2C19241C8B4A50002D58B8 /* BottomLeftViewController.swift */; };
+		ED2C19271C8B4AA1002D58B8 /* AfterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2C19261C8B4AA1002D58B8 /* AfterViewController.swift */; };
+		ED2C19291C8B4AAE002D58B8 /* BeforeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2C19281C8B4AAE002D58B8 /* BeforeViewController.swift */; };
+		ED2C192B1C8B4AC0002D58B8 /* AfroLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2C192A1C8B4AC0002D58B8 /* AfroLayoutViewController.swift */; };
 		ED9C8A1E1C4C1AA200A5D447 /* VerticalStackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9C8A1D1C4C1AA200A5D447 /* VerticalStackingViewController.swift */; };
 		ED9C8A201C4C1AB500A5D447 /* SimpleAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9C8A1F1C4C1AB500A5D447 /* SimpleAnimationViewController.swift */; };
 /* End PBXBuildFile section */
@@ -44,6 +55,17 @@
 		9D1C51A8CF559CC7F916B2A8 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		CC156CB93B8CED56D3E2307C /* Pods-AfroLayout_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AfroLayout_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AfroLayout_Example/Pods-AfroLayout_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		EB90117B824DD0E2A83E9011 /* Pods-AfroLayout_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AfroLayout_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-AfroLayout_Example/Pods-AfroLayout_Example.release.xcconfig"; sourceTree = "<group>"; };
+		ED14DC7C1C8C351C008B70B5 /* BelowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BelowViewController.swift; sourceTree = "<group>"; };
+		ED14DC7E1C8C3538008B70B5 /* OnTopOfViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnTopOfViewController.swift; sourceTree = "<group>"; };
+		ED2C191A1C8B4984002D58B8 /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
+		ED2C191C1C8B49C7002D58B8 /* TopLeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopLeftViewController.swift; sourceTree = "<group>"; };
+		ED2C191E1C8B49D8002D58B8 /* TopRightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopRightViewController.swift; sourceTree = "<group>"; };
+		ED2C19201C8B4A35002D58B8 /* BottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomViewController.swift; sourceTree = "<group>"; };
+		ED2C19221C8B4A43002D58B8 /* BottomRightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomRightViewController.swift; sourceTree = "<group>"; };
+		ED2C19241C8B4A50002D58B8 /* BottomLeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomLeftViewController.swift; sourceTree = "<group>"; };
+		ED2C19261C8B4AA1002D58B8 /* AfterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AfterViewController.swift; sourceTree = "<group>"; };
+		ED2C19281C8B4AAE002D58B8 /* BeforeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeforeViewController.swift; sourceTree = "<group>"; };
+		ED2C192A1C8B4AC0002D58B8 /* AfroLayoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AfroLayoutViewController.swift; sourceTree = "<group>"; };
 		ED9C8A1D1C4C1AA200A5D447 /* VerticalStackingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalStackingViewController.swift; sourceTree = "<group>"; };
 		ED9C8A1F1C4C1AB500A5D447 /* SimpleAnimationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleAnimationViewController.swift; sourceTree = "<group>"; };
 		F95342381593BF254B514D70 /* Pods_AfroLayout_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AfroLayout_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,8 +174,19 @@
 			children = (
 				ED9C8A1D1C4C1AA200A5D447 /* VerticalStackingViewController.swift */,
 				ED9C8A1F1C4C1AB500A5D447 /* SimpleAnimationViewController.swift */,
+				ED2C191A1C8B4984002D58B8 /* TopViewController.swift */,
+				ED2C191C1C8B49C7002D58B8 /* TopLeftViewController.swift */,
+				ED2C191E1C8B49D8002D58B8 /* TopRightViewController.swift */,
+				ED2C19201C8B4A35002D58B8 /* BottomViewController.swift */,
+				ED2C19221C8B4A43002D58B8 /* BottomRightViewController.swift */,
+				ED2C19241C8B4A50002D58B8 /* BottomLeftViewController.swift */,
+				ED2C19261C8B4AA1002D58B8 /* AfterViewController.swift */,
+				ED2C19281C8B4AAE002D58B8 /* BeforeViewController.swift */,
+				ED14DC7C1C8C351C008B70B5 /* BelowViewController.swift */,
+				ED14DC7E1C8C3538008B70B5 /* OnTopOfViewController.swift */,
+				ED2C192A1C8B4AC0002D58B8 /* AfroLayoutViewController.swift */,
 			);
-			name = ViewControllers;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		F3EF33540BAFE66D68A4D8DD /* Pods */ = {
@@ -365,10 +398,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED14DC7F1C8C3538008B70B5 /* OnTopOfViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				ED2C192B1C8B4AC0002D58B8 /* AfroLayoutViewController.swift in Sources */,
+				ED2C19211C8B4A35002D58B8 /* BottomViewController.swift in Sources */,
 				ED9C8A1E1C4C1AA200A5D447 /* VerticalStackingViewController.swift in Sources */,
+				ED2C19291C8B4AAE002D58B8 /* BeforeViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				ED2C191F1C8B49D8002D58B8 /* TopRightViewController.swift in Sources */,
 				ED9C8A201C4C1AB500A5D447 /* SimpleAnimationViewController.swift in Sources */,
+				ED14DC7D1C8C351C008B70B5 /* BelowViewController.swift in Sources */,
+				ED2C19271C8B4AA1002D58B8 /* AfterViewController.swift in Sources */,
+				ED2C19251C8B4A50002D58B8 /* BottomLeftViewController.swift in Sources */,
+				ED2C191B1C8B4984002D58B8 /* TopViewController.swift in Sources */,
+				ED2C19231C8B4A43002D58B8 /* BottomRightViewController.swift in Sources */,
+				ED2C191D1C8B49C7002D58B8 /* TopLeftViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
