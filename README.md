@@ -65,7 +65,7 @@ In all the methods below notice the support for UILayoutSupport
 
 ##### Constrain to top of view
 
-See [screenshot]()
+See [screenshot](https://github.com/va3093/AfroLayout/blob/master/ReadmeAssets/top.png)
 
 ```swift
 	self.wrapperView.constrainToTopOfView(viewController.view, topLayoutGuide: viewController.topLayoutGuide)
@@ -73,36 +73,54 @@ See [screenshot]()
 ```
 
 ##### Constrain to top left of view
+
+See [screenshot](https://github.com/va3093/AfroLayout/blob/master/ReadmeAssets/topLeft.png)
+
 ```swift
 	self.wrapperView.constrainToTopLeftOfView(viewController.view, topLayoutGuide: viewController.topLayoutGuide)
 	view1.constrainToTopLeftOfView(self.wrapperView)
 ```
 
 ##### Constrain to top right of view
+
+See [screenshot](https://github.com/va3093/AfroLayout/blob/master/ReadmeAssets/topRight.png)
+
 ```swift
 	self.wrapperView.constrainToTopRightOfView(viewController.view, topLayoutGuide: viewController.topLayoutGuide)
 	view1.constrainToTopRightOfView(self.wrapperView)
 ```
 
 ##### Constrain to bottom view
+
+See [screenshot](https://github.com/va3093/AfroLayout/blob/master/ReadmeAssets/bottom.png)
+
 ```swift
 	self.wrapperView.constrainToBottomOfView(viewController.view, bottomLayoutGuide: viewController.bottomLayoutGuide)
 	view1.constrainToBottomOfView(self.wrapperView)
 ```
 
 ##### Constrain to bottom left view
+
+See [screenshot](https://github.com/va3093/AfroLayout/blob/master/ReadmeAssets/bottomLeft.png)
+
 ```swift
 	self.wrapperView.constrainToBottomLeftOfView(viewController.view, bottomLayoutGuide: viewController.bottomLayoutGuide)
 	view1.constrainToBottomLeftOfView(self.wrapperView)
 ```
 
 ##### Constrain to bottom right view
+
+See [screenshot](https://github.com/va3093/AfroLayout/blob/master/ReadmeAssets/bottomRight.png)
+
 ```swift
 	self.wrapperView.constrainToBottomRightOfView(viewController.view, bottomLayoutGuide: viewController.bottomLayoutGuide)
 	view1.constrainToBottomRightOfView(self.wrapperView)
 ```
 
 ##### Constrain after view
+
+See [screenshot](https://github.com/va3093/AfroLayout/blob/master/ReadmeAssets/after.png)
+
 ```swift
 	view1.constrainAfterView(self.wrapperView, inView: self.view)
 	view2.constrainAfterView(self.wrapperView, inView: self.view, allign: .CenterY, horizontalPadding: 32)
@@ -110,6 +128,9 @@ See [screenshot]()
 ```
 
 ##### Constrain before view
+
+See [screenshot](https://github.com/va3093/AfroLayout/blob/master/ReadmeAssets/before.png)
+
 ```swift
 	view1.constrainBeforeView(self.wrapperView, inView: self.view)
 	view2.constrainBeforeView(self.wrapperView, inView: self.view, allign: .CenterY, horizontalPadding: -32)
@@ -117,6 +138,9 @@ See [screenshot]()
 ```
 
 ##### Constrain below view
+
+See [screenshot](https://github.com/va3093/AfroLayout/blob/master/ReadmeAssets/below.png)
+
 ```swift
 	view1.constrainBelowView(self.wrapperView, inView: self.view)
 	view2.constrainBelowView(self.wrapperView, inView: self.view, allign: .CenterX, verticalPadding: 32)
@@ -124,6 +148,9 @@ See [screenshot]()
 ```
 
 ##### Constrain On top of view
+
+See [screenshot](https://github.com/va3093/AfroLayout/blob/master/ReadmeAssets/onTop.png)
+
 ```swift
 	view1.constrainOnTopOfView(self.wrapperView, inView: self.view)
 	view2.constrainOnTopOfView(self.wrapperView, inView: self.view, allign: .CenterX, verticalPadding: -32)
