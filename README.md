@@ -27,7 +27,7 @@ So if you go full circle and move your view layout code into your source files y
 
 The final nail in the coffin is if you require animation. To do animations require keeping reference to the appropriate constraints and doing the UIView.animationwithduration dance remembering all the [caveats](http://stackoverflow.com/questions/18363399/autolayout-animation-issue). The advantages of using Autolayout all of sudden start to feel not worth the hassle.
 
-Enter AfroLayout. This library reduces the amount of work you need to do to maintain constraints in code. It also lets you perform animations in your view while still maintaining the powers of the autolayout constraint engine but with the effort of animating frames. 
+Enter AfroLayout. This library reduces the amount of work you need to do to maintain constraints in code. It also lets you animate your views with the power of the AutoLayout engine and the effort of frame animations 
 
 ## Requirements
 
@@ -62,31 +62,70 @@ To use this library in your project manually you may:
 AfroLayout has [one fundamental method](#the-bedrock-of-afroLayout) that allows for easy adding of constraints to views. This method has been further abstracted into helper methods that apply default values for commonly used constraints. If any of these methods don't suit your needs you can alway fall back to the [custom constraints method](#the-bedrock-of-afroLayout).
 
 ##### Constrain to top of view
-[Todo]
+```swift
+	view1.constrainToTopOfView(self.wrapperView)
+```
 
 ##### Constrain to top left of view
-[Todo]
+```swift
+	view1.constrainToTopLeftOfView(self.wrapperView)
+```
 
 ##### Constrain to top right of view
-[Todo]
+```swift
+	view1.constrainToTopRightOfView(self.wrapperView)
+```
 
 ##### Constrain to bottom view
-[Todo]
+```swift
+	view1.constrainToBottomOfView(self.wrapperView)
+```
 
 ##### Constrain to bottom left view
-[Todo]
+```swift
+	view1.constrainToBottomLeftOfView(self.wrapperView)
+```
 
 ##### Constrain to bottom right view
-[Todo]
+```swift
+	view1.constrainToBottomRightOfView(self.wrapperView)
+```
 
 ##### Constrain after view
-[Todo]
+```swift
+	view1.constrainAfterView(self.wrapperView, inView: self.view)
+	view2.constrainAfterView(self.wrapperView, inView: self.view, allign: .CenterY, horizontalPadding: 32)
+	view3.constrainAfterView(self.wrapperView, inView: self.view, allign: .Bottom)
+```
 
 ##### Constrain before view
-[Todo]
+```swift
+	view1.constrainBeforeView(self.wrapperView, inView: self.view)
+	view2.constrainBeforeView(self.wrapperView, inView: self.view, allign: .CenterY, horizontalPadding: -32)
+	view3.constrainBeforeView(self.wrapperView, inView: self.view, allign: .Bottom)
+```
+
+##### Constrain below view
+```swift
+	view1.constrainBelowView(self.wrapperView, inView: self.view)
+	view2.constrainBelowView(self.wrapperView, inView: self.view, allign: .CenterX, verticalPadding: 32)
+	view3.constrainBelowView(self.wrapperView, inView: self.view, allign: .Trailing)
+```
+
+##### Constrain On top of view
+```swift
+	view1.constrainOnTopOfView(self.wrapperView, inView: self.view)
+	view2.constrainOnTopOfView(self.wrapperView, inView: self.view, allign: .CenterX, verticalPadding: -32)
+	view3.constrainOnTopOfView(self.wrapperView, inView: self.view, allign: .Trailing)
+```
 
 ##### Add bottom constraint
-[Todo]
+
+This is most used when you are laying out views in a scrollView and you just want to quickly add the bottom constraint to the scrollview so that the scrollview knows how to size its content view.
+
+```swift
+	view1.addBottomConstraint(self.scrollView)
+```
 
 #### The bedrock of AfroLayout
 
