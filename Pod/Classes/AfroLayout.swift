@@ -24,8 +24,40 @@ extension UIView {
 			self.addSubview(view)
 		}
 	}
+    
+    @objc public func objcStackViews(
+        stackedViews: [UIView],
+        topLayoutGuide: UILayoutSupport? = nil,
+        horizontalAttributes: [[Int]]? = nil,
+        horizontalRelations: [[Int]]? = nil,
+        horizontalPaddings: [[CGFloat]]? = nil,
+        gapPadding: CGFloat = 8.0,
+        topPadding: CGFloat = 0.0,
+        bottomPadding: CGFloat = 0.0,
+        bottomRelation: NSLayoutRelation = .Equal
+        ) {
+            let hAttributes: [[NSLayoutAttribute]]? = horizontalAttributes?.map{$0.map{NSLayoutAttribute(rawValue: $0) ?? .Top}}
+            let hRelations :[[NSLayoutRelation]]? = horizontalRelations?.map{$0.map{NSLayoutRelation(rawValue: $0) ?? .Equal}}
+            
+            self.stackViews(stackedViews, topLayoutGuide: topLayoutGuide, horizontalAttributes: hAttributes, horizontalRelations: hRelations, horizontalPaddings: horizontalPaddings, gapPadding: gapPadding, topPadding: topPadding, bottomPadding: bottomPadding, bottomRelation: bottomRelation)
+    }
+    
+    @objc public func objcStackHorizontallViews(
+        stackedViews: [UIView],
+        verticalAttributes: [[Int]]? = nil,
+        verticalRelations: [[Int]]? = nil,
+        verticalPaddings: [[CGFloat]]? = nil,
+        gapPadding: CGFloat = 8.0,
+        leftPadding: CGFloat = 0.0,
+        rightPadding: CGFloat = 0.0,
+        rightRelation: NSLayoutRelation = .Equal
+        ) {
+            let vAttributes: [[NSLayoutAttribute]]? = verticalAttributes?.map{$0.map{NSLayoutAttribute(rawValue: $0) ?? .Top}}
+            let vRelations :[[NSLayoutRelation]]? = verticalRelations?.map{$0.map{NSLayoutRelation(rawValue: $0) ?? .Equal}}
+            self.stackHorizontallViews(stackedViews, verticalAttributes: vAttributes, verticalRelations: vRelations, verticalPaddings: verticalPaddings, gapPadding: gapPadding, leftPadding: leftPadding, rightPadding: rightPadding, rightRelation: rightRelation)
+    }
 	
-	public func stackViews(
+	 public func stackViews(
 		stackedViews: [UIView],
         topLayoutGuide: UILayoutSupport? = nil,
 		horizontalAttributes: [[NSLayoutAttribute]]? = nil,
@@ -61,7 +93,6 @@ extension UIView {
     
     public func stackHorizontallViews(
         stackedViews: [UIView],
-        leftLayoutGuide: UILayoutSupport? = nil,
         verticalAttributes: [[NSLayoutAttribute]]? = nil,
         verticalRelations: [[NSLayoutRelation]]? = nil,
         verticalPaddings: [[CGFloat]]? = nil,
@@ -81,7 +112,7 @@ extension UIView {
                     stackedViews[index].addCustomConstraints(inView: self, toViews: [nLastView, self, self], selfAttributes: [NSLayoutAttribute.Left] + vAttributes[index], otherViewAttributes: [NSLayoutAttribute.Right] + vAttributes[index], relations: [NSLayoutRelation.Equal] + vRelations[index], padding: [gapPadding] + vPadding[index])
                     
                 } else {
-                    stackedViews[index].addCustomConstraints(inView: self, toViews: leftLayoutGuide == nil ? nil : [leftLayoutGuide!, self, self], selfAttributes: [NSLayoutAttribute.Left] + vAttributes[index], otherViewAttributes: (leftLayoutGuide == nil ?  [NSLayoutAttribute.Left] : [NSLayoutAttribute.Right]) + vAttributes[index], relations: [NSLayoutRelation.Equal] + vRelations[index], padding: [leftPadding] + vPadding[index])
+                    stackedViews[index].addCustomConstraints(inView: self, selfAttributes: [NSLayoutAttribute.Left] + vAttributes[index], otherViewAttributes:  [NSLayoutAttribute.Left], relations: [NSLayoutRelation.Equal] + vRelations[index], padding: [leftPadding] + vPadding[index])
                 }
                 lastView = stackedViews[index]
             }
