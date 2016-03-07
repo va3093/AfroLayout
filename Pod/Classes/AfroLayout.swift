@@ -112,7 +112,7 @@ extension UIView {
                     stackedViews[index].addCustomConstraints(inView: self, toViews: [nLastView, self, self], selfAttributes: [NSLayoutAttribute.Left] + vAttributes[index], otherViewAttributes: [NSLayoutAttribute.Right] + vAttributes[index], relations: [NSLayoutRelation.Equal] + vRelations[index], padding: [gapPadding] + vPadding[index])
                     
                 } else {
-                    stackedViews[index].addCustomConstraints(inView: self, selfAttributes: [NSLayoutAttribute.Left] + vAttributes[index], otherViewAttributes:  [NSLayoutAttribute.Left], relations: [NSLayoutRelation.Equal] + vRelations[index], padding: [leftPadding] + vPadding[index])
+                    stackedViews[index].addCustomConstraints(inView: self, selfAttributes: [NSLayoutAttribute.Left] + vAttributes[index], otherViewAttributes:  [NSLayoutAttribute.Left] + vAttributes[index], relations: [NSLayoutRelation.Equal] + vRelations[index], padding: [leftPadding] + vPadding[index])
                 }
                 lastView = stackedViews[index]
             }
