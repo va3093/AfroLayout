@@ -48,6 +48,11 @@ end
 ```
 Note that this requires CocoaPods version 36, and your iOS deployment target to be at least 8.0:
 
+####Carthage (iOS 8+, OS X 10.9+)
+You can use [Carthage](https://github.com/Carthage/Carthage) to install `AfroLayout` by adding it to your `Cartfile`:
+```
+github "va3093/afrolayout"
+```
 
 ####Manually (iOS 7+, OS X 10.9+)
 
