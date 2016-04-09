@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EDFFC00C1CB918FE00468B3F"
-               BuildableName = "AfroLayout_iOS.framework"
-               BlueprintName = "AfroLayout_iOS"
+               BlueprintIdentifier = "EDFFC0201CB971D900468B3F"
+               BuildableName = "AfroLayout.framework"
+               BlueprintName = "AfroLayout"
                ReferencedContainer = "container:AfroLayout.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EDFFC00C1CB918FE00468B3F"
-            BuildableName = "AfroLayout_iOS.framework"
-            BlueprintName = "AfroLayout_iOS"
+            BlueprintIdentifier = "EDFFC0201CB971D900468B3F"
+            BuildableName = "AfroLayout.framework"
+            BlueprintName = "AfroLayout"
             ReferencedContainer = "container:AfroLayout.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EDFFC00C1CB918FE00468B3F"
-            BuildableName = "AfroLayout_iOS.framework"
-            BlueprintName = "AfroLayout_iOS"
+            BlueprintIdentifier = "EDFFC0201CB971D900468B3F"
+            BuildableName = "AfroLayout.framework"
+            BlueprintName = "AfroLayout"
             ReferencedContainer = "container:AfroLayout.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
