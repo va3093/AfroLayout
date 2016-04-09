@@ -1,6 +1,0 @@
-framework module Pods_AfroLayout_Example {
-  umbrella header "Pods-AfroLayout_Example-umbrella.h"
-
-  export *
-  module * { export * }
-}
