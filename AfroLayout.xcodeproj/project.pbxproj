@@ -704,6 +704,7 @@
 				EDFFC02C1CB971D900468B3F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
