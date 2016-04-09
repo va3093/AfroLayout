@@ -19,6 +19,7 @@
 		EDFFC0241CB971D900468B3F /* AfroLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = EDFFC0231CB971D900468B3F /* AfroLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EDFFC0281CB971D900468B3F /* AfroLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFFC0211CB971D900468B3F /* AfroLayout.framework */; };
 		EDFFC0291CB971D900468B3F /* AfroLayout.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EDFFC0211CB971D900468B3F /* AfroLayout.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EDFFC02F1CB9726C00468B3F /* AfroLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFFBFC31CB90DE000468B3F /* AfroLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -409,6 +410,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDFFC02F1CB9726C00468B3F /* AfroLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
