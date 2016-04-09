@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AfroLayout
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 	
