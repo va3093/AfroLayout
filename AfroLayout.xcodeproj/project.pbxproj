@@ -16,10 +16,10 @@
 		EDFFBFC41CB90DE000468B3F /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = EDFFBFC01CB90DE000468B3F /* .gitkeep */; };
 		EDFFBFC51CB90DE000468B3F /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = EDFFBFC21CB90DE000468B3F /* .gitkeep */; };
 		EDFFBFC61CB90DE000468B3F /* AfroLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFFBFC31CB90DE000468B3F /* AfroLayout.swift */; };
-		EDFFBFCF1CB914A400468B3F /* AfroLayout-iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = EDFFBFCE1CB914A400468B3F /* AfroLayout-iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EDFFBFD31CB914A400468B3F /* AfroLayout-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFFBFCC1CB914A400468B3F /* AfroLayout-iOS.framework */; };
-		EDFFBFD41CB914A400468B3F /* AfroLayout-iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EDFFBFCC1CB914A400468B3F /* AfroLayout-iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EDFFBFD91CB914B300468B3F /* AfroLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFFBFC31CB90DE000468B3F /* AfroLayout.swift */; };
+		EDFFC0101CB918FE00468B3F /* AfroLayout_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = EDFFC00F1CB918FE00468B3F /* AfroLayout_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EDFFC0141CB918FE00468B3F /* AfroLayout_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFFC00D1CB918FE00468B3F /* AfroLayout_iOS.framework */; };
+		EDFFC0151CB918FE00468B3F /* AfroLayout_iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EDFFC00D1CB918FE00468B3F /* AfroLayout_iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EDFFC0191CB9190300468B3F /* AfroLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFFBFC31CB90DE000468B3F /* AfroLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,12 +30,12 @@
 			remoteGlobalIDString = 607FACCF1AFB9204008FA782;
 			remoteInfo = AfroLayout;
 		};
-		EDFFBFD11CB914A400468B3F /* PBXContainerItemProxy */ = {
+		EDFFC0121CB918FE00468B3F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = EDFFBFCB1CB914A400468B3F;
-			remoteInfo = "AfroLayout-iOS";
+			remoteGlobalIDString = EDFFC00C1CB918FE00468B3F;
+			remoteInfo = AfroLayout_iOS;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -46,7 +46,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				EDFFBFD41CB914A400468B3F /* AfroLayout-iOS.framework in Embed Frameworks */,
+				EDFFC0151CB918FE00468B3F /* AfroLayout_iOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -70,9 +70,11 @@
 		EDFFBFC01CB90DE000468B3F /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		EDFFBFC21CB90DE000468B3F /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		EDFFBFC31CB90DE000468B3F /* AfroLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AfroLayout.swift; sourceTree = "<group>"; };
-		EDFFBFCC1CB914A400468B3F /* AfroLayout-iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "AfroLayout-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDFFBFCE1CB914A400468B3F /* AfroLayout-iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AfroLayout-iOS.h"; sourceTree = "<group>"; };
 		EDFFBFD01CB914A400468B3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDFFC00D1CB918FE00468B3F /* AfroLayout_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AfroLayout_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDFFC00F1CB918FE00468B3F /* AfroLayout_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AfroLayout_iOS.h; sourceTree = "<group>"; };
+		EDFFC0111CB918FE00468B3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDFFBFD31CB914A400468B3F /* AfroLayout-iOS.framework in Frameworks */,
+				EDFFC0141CB918FE00468B3F /* AfroLayout_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,7 +93,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EDFFBFC81CB914A400468B3F /* Frameworks */ = {
+		EDFFC0091CB918FE00468B3F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -109,6 +111,7 @@
 				607FACD21AFB9204008FA782 /* Example for AfroLayout */,
 				607FACE81AFB9204008FA782 /* Tests */,
 				EDFFBFCD1CB914A400468B3F /* AfroLayout-iOS */,
+				EDFFC00E1CB918FE00468B3F /* AfroLayout_iOS */,
 				607FACD11AFB9204008FA782 /* Products */,
 				A58A17E5372E62F9CBB15915 /* Frameworks */,
 			);
@@ -119,7 +122,7 @@
 			children = (
 				607FACD01AFB9204008FA782 /* AfroLayout_Example.app */,
 				607FACE51AFB9204008FA782 /* AfroLayout_Tests.xctest */,
-				EDFFBFCC1CB914A400468B3F /* AfroLayout-iOS.framework */,
+				EDFFC00D1CB918FE00468B3F /* AfroLayout_iOS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -223,14 +226,23 @@
 			path = "AfroLayout-iOS";
 			sourceTree = "<group>";
 		};
+		EDFFC00E1CB918FE00468B3F /* AfroLayout_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				EDFFC00F1CB918FE00468B3F /* AfroLayout_iOS.h */,
+				EDFFC0111CB918FE00468B3F /* Info.plist */,
+			);
+			path = AfroLayout_iOS;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		EDFFBFC91CB914A400468B3F /* Headers */ = {
+		EDFFC00A1CB918FE00468B3F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDFFBFCF1CB914A400468B3F /* AfroLayout-iOS.h in Headers */,
+				EDFFC0101CB918FE00468B3F /* AfroLayout_iOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,7 +261,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				EDFFBFD21CB914A400468B3F /* PBXTargetDependency */,
+				EDFFC0131CB918FE00468B3F /* PBXTargetDependency */,
 			);
 			name = AfroLayout_Example;
 			productName = AfroLayout;
@@ -274,22 +286,22 @@
 			productReference = 607FACE51AFB9204008FA782 /* AfroLayout_Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		EDFFBFCB1CB914A400468B3F /* AfroLayout-iOS */ = {
+		EDFFC00C1CB918FE00468B3F /* AfroLayout_iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EDFFBFD51CB914A400468B3F /* Build configuration list for PBXNativeTarget "AfroLayout-iOS" */;
+			buildConfigurationList = EDFFC0161CB918FE00468B3F /* Build configuration list for PBXNativeTarget "AfroLayout_iOS" */;
 			buildPhases = (
-				EDFFBFC71CB914A400468B3F /* Sources */,
-				EDFFBFC81CB914A400468B3F /* Frameworks */,
-				EDFFBFC91CB914A400468B3F /* Headers */,
-				EDFFBFCA1CB914A400468B3F /* Resources */,
+				EDFFC0081CB918FE00468B3F /* Sources */,
+				EDFFC0091CB918FE00468B3F /* Frameworks */,
+				EDFFC00A1CB918FE00468B3F /* Headers */,
+				EDFFC00B1CB918FE00468B3F /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "AfroLayout-iOS";
-			productName = "AfroLayout-iOS";
-			productReference = EDFFBFCC1CB914A400468B3F /* AfroLayout-iOS.framework */;
+			name = AfroLayout_iOS;
+			productName = AfroLayout_iOS;
+			productReference = EDFFC00D1CB918FE00468B3F /* AfroLayout_iOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -309,7 +321,7 @@
 						CreatedOnToolsVersion = 6.3.1;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
-					EDFFBFCB1CB914A400468B3F = {
+					EDFFC00C1CB918FE00468B3F = {
 						CreatedOnToolsVersion = 7.3;
 					};
 				};
@@ -329,7 +341,7 @@
 			targets = (
 				607FACCF1AFB9204008FA782 /* AfroLayout_Example */,
 				607FACE41AFB9204008FA782 /* AfroLayout_Tests */,
-				EDFFBFCB1CB914A400468B3F /* AfroLayout-iOS */,
+				EDFFC00C1CB918FE00468B3F /* AfroLayout_iOS */,
 			);
 		};
 /* End PBXProject section */
@@ -352,7 +364,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EDFFBFCA1CB914A400468B3F /* Resources */ = {
+		EDFFC00B1CB918FE00468B3F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -382,11 +394,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EDFFBFC71CB914A400468B3F /* Sources */ = {
+		EDFFC0081CB918FE00468B3F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDFFBFD91CB914B300468B3F /* AfroLayout.swift in Sources */,
+				EDFFC0191CB9190300468B3F /* AfroLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,10 +410,10 @@
 			target = 607FACCF1AFB9204008FA782 /* AfroLayout_Example */;
 			targetProxy = 607FACE61AFB9204008FA782 /* PBXContainerItemProxy */;
 		};
-		EDFFBFD21CB914A400468B3F /* PBXTargetDependency */ = {
+		EDFFC0131CB918FE00468B3F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EDFFBFCB1CB914A400468B3F /* AfroLayout-iOS */;
-			targetProxy = EDFFBFD11CB914A400468B3F /* PBXContainerItemProxy */;
+			target = EDFFC00C1CB918FE00468B3F /* AfroLayout_iOS */;
+			targetProxy = EDFFC0121CB918FE00468B3F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -552,7 +564,7 @@
 			};
 			name = Release;
 		};
-		EDFFBFD61CB914A400468B3F /* Debug */ = {
+		EDFFC0171CB918FE00468B3F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
@@ -562,7 +574,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "AfroLayout-iOS/Info.plist";
+				INFOPLIST_FILE = AfroLayout_iOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -575,7 +587,7 @@
 			};
 			name = Debug;
 		};
-		EDFFBFD71CB914A400468B3F /* Release */ = {
+		EDFFC0181CB918FE00468B3F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
@@ -584,7 +596,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "AfroLayout-iOS/Info.plist";
+				INFOPLIST_FILE = AfroLayout_iOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -627,11 +639,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EDFFBFD51CB914A400468B3F /* Build configuration list for PBXNativeTarget "AfroLayout-iOS" */ = {
+		EDFFC0161CB918FE00468B3F /* Build configuration list for PBXNativeTarget "AfroLayout_iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EDFFBFD61CB914A400468B3F /* Debug */,
-				EDFFBFD71CB914A400468B3F /* Release */,
+				EDFFC0171CB918FE00468B3F /* Debug */,
+				EDFFC0181CB918FE00468B3F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
