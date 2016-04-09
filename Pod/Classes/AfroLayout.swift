@@ -24,15 +24,49 @@ extension UIView {
 			self.addSubview(view)
 		}
 	}
+    
+    @objc public func objcStackViews(
+        stackedViews: [UIView],
+        topLayoutGuide: UILayoutSupport? = nil,
+        horizontalAttributes: [[Int]]? = nil,
+        horizontalRelations: [[Int]]? = nil,
+        horizontalPaddings: [[CGFloat]]? = nil,
+        gapPadding: CGFloat = 8.0,
+        topPadding: CGFloat = 0.0,
+        bottomPadding: CGFloat = 0.0,
+        bottomRelation: NSLayoutRelation = .Equal
+        ) {
+            let hAttributes: [[NSLayoutAttribute]]? = horizontalAttributes?.map{$0.map{NSLayoutAttribute(rawValue: $0) ?? .Top}}
+            let hRelations :[[NSLayoutRelation]]? = horizontalRelations?.map{$0.map{NSLayoutRelation(rawValue: $0) ?? .Equal}}
+            
+            self.stackViews(stackedViews, topLayoutGuide: topLayoutGuide, horizontalAttributes: hAttributes, horizontalRelations: hRelations, horizontalPaddings: horizontalPaddings, gapPadding: gapPadding, topPadding: topPadding, bottomPadding: bottomPadding, bottomRelation: bottomRelation)
+    }
+    
+    @objc public func objcStackHorizontallViews(
+        stackedViews: [UIView],
+        verticalAttributes: [[Int]]? = nil,
+        verticalRelations: [[Int]]? = nil,
+        verticalPaddings: [[CGFloat]]? = nil,
+        gapPadding: CGFloat = 8.0,
+        leftPadding: CGFloat = 0.0,
+        rightPadding: CGFloat = 0.0,
+        rightRelation: NSLayoutRelation = .Equal
+        ) {
+            let vAttributes: [[NSLayoutAttribute]]? = verticalAttributes?.map{$0.map{NSLayoutAttribute(rawValue: $0) ?? .Top}}
+            let vRelations :[[NSLayoutRelation]]? = verticalRelations?.map{$0.map{NSLayoutRelation(rawValue: $0) ?? .Equal}}
+            self.stackHorizontallViews(stackedViews, verticalAttributes: vAttributes, verticalRelations: vRelations, verticalPaddings: verticalPaddings, gapPadding: gapPadding, leftPadding: leftPadding, rightPadding: rightPadding, rightRelation: rightRelation)
+    }
 	
-	public func stackViews(
+	 public func stackViews(
 		stackedViews: [UIView],
+        topLayoutGuide: UILayoutSupport? = nil,
 		horizontalAttributes: [[NSLayoutAttribute]]? = nil,
 		horizontalRelations: [[NSLayoutRelation]]? = nil,
 		horizontalPaddings: [[CGFloat]]? = nil,
 		gapPadding: CGFloat = 8.0,
 		topPadding: CGFloat = 0.0,
-		bottomPadding: CGFloat = 0.0
+		bottomPadding: CGFloat = 0.0,
+		bottomRelation: NSLayoutRelation = .Equal
 		) {
 			var lastView: UIView?
 			let hAttributes: [[NSLayoutAttribute]] = self.getHorizontalAttributes(forStackViews: stackedViews, horizontalAttributes: horizontalAttributes)
@@ -45,19 +79,52 @@ extension UIView {
 					stackedViews[index].addCustomConstraints(inView: self, toViews: [nLastView, self, self], selfAttributes: [NSLayoutAttribute.Top] + hAttributes[index], otherViewAttributes: [NSLayoutAttribute.Bottom] + hAttributes[index], relations: [NSLayoutRelation.Equal] + hRelations[index], padding: [gapPadding] + hPadding[index])
 					
 				} else {
-					stackedViews[index].addCustomConstraints(inView: self, selfAttributes: [NSLayoutAttribute.Top] + hAttributes[index], otherViewAttributes: [NSLayoutAttribute.Top] + hAttributes[index], relations: [NSLayoutRelation.Equal] + hRelations[index], padding: [topPadding] + hPadding[index])
+                    stackedViews[index].addCustomConstraints(inView: self, toViews: topLayoutGuide == nil ? nil : [topLayoutGuide!, self, self], selfAttributes: [NSLayoutAttribute.Top] + hAttributes[index], otherViewAttributes: (topLayoutGuide == nil ?  [NSLayoutAttribute.Top] : [NSLayoutAttribute.Bottom]) + hAttributes[index], relations: [NSLayoutRelation.Equal] + hRelations[index], padding: [topPadding] + hPadding[index])
 				}
 				lastView = stackedViews[index]
 			}
 			
 			if let nLastView = lastView {
-				nLastView.addCustomConstraints(inView: self, selfAttributes: [.Bottom], otherViewAttributes: [.Bottom], relations: [.Equal], padding: [-bottomPadding])
+				nLastView.addCustomConstraints(inView: self, selfAttributes: [.Bottom], otherViewAttributes: [.Bottom], relations: [bottomRelation], padding: [-bottomPadding])
 			}
 			
 			
 	}
+    
+    public func stackHorizontallViews(
+        stackedViews: [UIView],
+        verticalAttributes: [[NSLayoutAttribute]]? = nil,
+        verticalRelations: [[NSLayoutRelation]]? = nil,
+        verticalPaddings: [[CGFloat]]? = nil,
+        gapPadding: CGFloat = 8.0,
+        leftPadding: CGFloat = 0.0,
+        rightPadding: CGFloat = 0.0,
+        rightRelation: NSLayoutRelation = .Equal
+        ) {
+            var lastView: UIView?
+            let vAttributes: [[NSLayoutAttribute]] = self.getVerticalAttributes(forStackViews: stackedViews, verticalAttributes: verticalAttributes)
+            let vRelations: [[NSLayoutRelation]] = self.getVerticalRelations(vAttributes, verticalRelations: verticalRelations)
+            let vPadding: [[CGFloat]] = self.getVerticalPadding(vAttributes, verticalPadding: verticalPaddings)
+            
+            for index in 0...(stackedViews.count - 1) {
+                if let nLastView = lastView {
+                    
+                    stackedViews[index].addCustomConstraints(inView: self, toViews: [nLastView, self, self], selfAttributes: [NSLayoutAttribute.Left] + vAttributes[index], otherViewAttributes: [NSLayoutAttribute.Right] + vAttributes[index], relations: [NSLayoutRelation.Equal] + vRelations[index], padding: [gapPadding] + vPadding[index])
+                    
+                } else {
+                    stackedViews[index].addCustomConstraints(inView: self, selfAttributes: [NSLayoutAttribute.Left] + vAttributes[index], otherViewAttributes:  [NSLayoutAttribute.Left] + vAttributes[index], relations: [NSLayoutRelation.Equal] + vRelations[index], padding: [leftPadding] + vPadding[index])
+                }
+                lastView = stackedViews[index]
+            }
+            
+            if let nLastView = lastView {
+                nLastView.addCustomConstraints(inView: self, selfAttributes: [.Right], otherViewAttributes: [.Right], relations: [rightRelation], padding: [-rightPadding])
+            }
+            
+            
+    }
 	
-	
+	//Horizontal
 	func getHorizontalAttributes(forStackViews stackViews: [UIView], horizontalAttributes: [[NSLayoutAttribute]]?) -> [[NSLayoutAttribute]]{
 		if let hAttributes = horizontalAttributes {
 			self.validateHorizontalAttributes(forStackViews: stackViews, horizontalAttributes: hAttributes)
@@ -65,7 +132,7 @@ extension UIView {
 		}
 		else {
 			return  stackViews.map({ (view: UIView) -> [NSLayoutAttribute] in
-				return [NSLayoutAttribute.CenterX]
+				return [NSLayoutAttribute.CenterX, NSLayoutAttribute.Width]
 			})
 		}
 	}
@@ -85,7 +152,9 @@ extension UIView {
 		}
 		else {
 			return  horizontalAttributes.map({ (attributes: [NSLayoutAttribute]) -> [NSLayoutRelation] in
-				return attributes.map({ _ in NSLayoutRelation.Equal})
+                return attributes.map({ (attribute: NSLayoutAttribute) in
+                    return attribute == .CenterX ?  NSLayoutRelation.Equal : NSLayoutRelation.LessThanOrEqual
+                })
 			})
 		}
 	}
@@ -118,10 +187,74 @@ extension UIView {
 		return isValid
 	}
 	
+    //Vertical
+    func getVerticalAttributes(forStackViews stackViews: [UIView], verticalAttributes: [[NSLayoutAttribute]]?) -> [[NSLayoutAttribute]]{
+        if let vAttributes = verticalAttributes {
+            self.validateVerticalAttributes(forStackViews: stackViews, verticalAttributes: vAttributes)
+            return vAttributes
+        }
+        else {
+            return  stackViews.map({ (view: UIView) -> [NSLayoutAttribute] in
+                return [NSLayoutAttribute.CenterY, NSLayoutAttribute.Height]
+            })
+        }
+    }
+    
+    func validateVerticalAttributes(forStackViews stackViews: [UIView], verticalAttributes: [[NSLayoutAttribute]]) -> Bool {
+        let isValid = verticalAttributes.count == stackViews.count
+        if !isValid {
+            self.abortWithMessage("The number of views to stack to should equal the number of vertical attribute sets provided. At the moment you have provided \(stackViews.count) views to stack and \(verticalAttributes.count) vertical attribute sets")
+        }
+        return isValid
+    }
+    
+    func getVerticalRelations(verticalAttributes: [[NSLayoutAttribute]], verticalRelations: [[NSLayoutRelation]]?) -> [[NSLayoutRelation]]{
+        if let vRelations = verticalRelations {
+            self.validateVerticalRelations(verticalAttributes, verticalRelations: vRelations)
+            return vRelations
+        }
+        else {
+            return  verticalAttributes.map({ (attributes: [NSLayoutAttribute]) -> [NSLayoutRelation] in
+                return attributes.map({ (attribute: NSLayoutAttribute) in
+                    return attribute == .CenterY ?  NSLayoutRelation.Equal : NSLayoutRelation.LessThanOrEqual
+                })
+            })
+        }
+    }
+    
+    func validateVerticalRelations(verticalAttributes: [[NSLayoutAttribute]], verticalRelations: [[NSLayoutRelation]]) -> Bool {
+        let isValid = verticalRelations.count == verticalAttributes.count
+        if !isValid {
+            self.abortWithMessage("The number of attribute sets used should match the number of NSLayoutRelation sets passed in")
+        }
+        return isValid
+    }
+    
+    func getVerticalPadding(verticalAttributes: [[NSLayoutAttribute]], verticalPadding: [[CGFloat]]?) -> [[CGFloat]]{
+        if let vPadding = verticalPadding {
+            self.validateVerticalPadding(verticalAttributes, verticalPadding: vPadding)
+            return vPadding
+        }
+        else {
+            return  verticalAttributes.map({ (attributes: [NSLayoutAttribute]) -> [CGFloat] in
+                return attributes.map({ _ in 0.0})
+            })
+        }
+    }
+    
+    func validateVerticalPadding(verticalAttributes: [[NSLayoutAttribute]], verticalPadding: [[CGFloat]]) -> Bool {
+        let isValid = verticalPadding.count == verticalAttributes.count
+        if !isValid {
+            self.abortWithMessage("The number of attribute sets used should match the number of padding sets passed in")
+        }
+        return isValid
+    }
+    
+    //end vertical
 	
 	public func addCustomConstraints(
 		inView superView: UIView,
-		toViews views: [UIView]? = nil,
+		toViews views: [AnyObject]? = nil,
 		selfAttributes: [NSLayoutAttribute],
 		relations: [NSLayoutRelation]? = nil,
 		otherViewAttributes: [NSLayoutAttribute]? = nil,
@@ -134,7 +267,7 @@ extension UIView {
 		let nRelations: [NSLayoutRelation] = self.getConstraintElements(forReferenceElement: selfAttributes, inputElements: relations, abortMessage: "The number of NSLayoutRelations provided must be the same as the number of NSLayoutAttributes for the item being constrained") { () -> [NSLayoutRelation] in
 			return selfAttributes.map({_ in return NSLayoutRelation.Equal})
 		}
-		let otherViews: [UIView] = self.getviews(forAttributes: selfAttributes, views: views, superView: superView)
+		let otherViews: [AnyObject] = self.getviews(forAttributes: selfAttributes, views: views, superView: superView)
 		
 		let nOtherViewAttributes: [NSLayoutAttribute] = self.getConstraintElements(forReferenceElement: selfAttributes, inputElements: otherViewAttributes, abortMessage: "The number of NSLayoutAttributes provided for the other views should be the same as for the attributes provided for the view being constrained") { () -> [NSLayoutAttribute] in
 			return selfAttributes
@@ -166,7 +299,7 @@ extension UIView {
 		return constraints
 	}
 	
-	func getviews(forAttributes attributes: [NSLayoutAttribute], views: [UIView]?, superView: UIView) -> [UIView]{
+	func getviews(forAttributes attributes: [NSLayoutAttribute], views: [AnyObject]?, superView: UIView) -> [AnyObject]{
 		if let nViews = views {
 			self.validateViews(forAttributes: attributes, views: nViews)
 			return nViews
@@ -176,8 +309,14 @@ extension UIView {
 		}
 	}
 	
-	func validateViews(forAttributes attributes: [NSLayoutAttribute], views: [UIView]) -> Bool {
+	func validateViews(forAttributes attributes: [NSLayoutAttribute], views: [AnyObject]) -> Bool {
 		let isValid = attributes.count <= views.count
+        
+        for view in views {
+            if !(view is UIView) && !(view is UILayoutSupport) {
+                self.abortWithMessage("The items passed in must be UIViews or UILayoutSupports. The type ")
+            }
+        }
 		if !isValid {
 			self.abortWithMessage("The number of views to constrain to should equal the number of attributes provided. At the moment you have provided \(attributes.count) attributes and \(views.count) views")
 		}
@@ -203,22 +342,6 @@ extension UIView {
 		return isValid
 	}
 	
-	public func addConstraintToTopLayoutGuide(
-		inView superView: UIView,
-		topLayoutGuide: UILayoutSupport,
-		selfAttribute: NSLayoutAttribute,
-		topLayoutAttribute: NSLayoutAttribute = .Bottom,
-		relation: NSLayoutRelation = .Equal,
-		padding: CGFloat = 0.0 )
-		-> [NSLayoutConstraint]
-	{
-		let constraints = [NSLayoutConstraint(item: self, attribute: selfAttribute, relatedBy: relation, toItem: topLayoutGuide, attribute: topLayoutAttribute, multiplier: 1.0, constant: padding)]
-		superView.addConstraints(constraints)
-		self.addedLayoutConstraints.appendContentsOf(constraints)
-		return constraints
-		
-	}
-	
 	public func addDimensions(width width: CGFloat? = nil, height: CGFloat? = nil, widthRelation: NSLayoutRelation = .Equal, heightRelation: NSLayoutRelation = .Equal) {
 		if let w : CGFloat = width {
 			let constraints: [NSLayoutConstraint] = [
@@ -238,9 +361,177 @@ extension UIView {
 		}
 		
 	}
+    
+    public func flushCurrentDimentionConstraints() {
+        self.removeConstraints(self.addedDimensionConstraints)
+    }
 	
 	func abortWithMessage(message: String) {
 		assertionFailure(message)
+	}
+    
+    //MARK: Helper methods
+    
+    public func constrainToTopLayoutGuide(
+        superView: UIView,
+        topLayoutGuide: UILayoutSupport,
+        topRelation: NSLayoutRelation = .Equal,
+        leadingRelation: NSLayoutRelation = .Equal,
+        trailingRelation: NSLayoutRelation = .Equal,
+        topPadding: CGFloat = 0.0,
+        leadingPadding: CGFloat = 0.0,
+        trailingPadding: CGFloat = 0.0
+        ) {
+        
+        self.addCustomConstraints(inView: superView, toViews: [topLayoutGuide, superView, superView], selfAttributes: [.Top, .Leading, .Trailing], relations: [topRelation, leadingRelation, trailingRelation], otherViewAttributes: [.Bottom, .Leading, .Trailing], padding: [topPadding, leadingPadding, trailingPadding])
+            
+    }
+    
+    public func fill(
+        superView: UIView,
+        topLayoutGuide: UILayoutSupport? = nil
+        ) {
+            self.addCustomConstraints(
+				inView:					superView,
+				toViews:				topLayoutGuide == nil ? nil : [topLayoutGuide!, superView, superView, superView],
+				selfAttributes:			[.Top, .Leading, .Trailing, .Bottom],
+				otherViewAttributes:	topLayoutGuide == nil ? nil : [.Bottom, .Leading, .Trailing, .Bottom]
+			)
+    }
+	
+	public func constrainToTopOfView(view: UIView, topLayoutGuide: UILayoutSupport? = nil, topPadding: CGFloat = 8.0, edgePadding: CGFloat = 8.0) {
+		let otherViews: [AnyObject] = topLayoutGuide == nil ? [view, view, view] : [topLayoutGuide!, view, view]
+		let otherViewAttributes: [NSLayoutAttribute] = topLayoutGuide == nil ? [.Top, .CenterX, .Width] : [.Bottom, .CenterX, .Width]
+		
+		self.addCustomConstraints(
+			inView:					view,
+			toViews:				otherViews,
+			selfAttributes:			[.Top, .CenterX, .Width],
+			otherViewAttributes:	otherViewAttributes,
+			relations:				[.Equal, .Equal, .LessThanOrEqual],
+			padding:				[topPadding, 0, edgePadding * 2]
+		)
+	}
+	
+	public func constrainToTopLeftOfView(view: UIView,  topLayoutGuide: UILayoutSupport? = nil,topPadding: CGFloat = 8.0, edgePadding: CGFloat = 8.0) {
+		let otherViews: [AnyObject] = topLayoutGuide == nil ? [view, view, view] : [topLayoutGuide!, view, view]
+		let otherViewAttributes: [NSLayoutAttribute] = topLayoutGuide == nil ? [.Top, .Leading, .Trailing] : [.Bottom, .Leading, .Trailing]
+
+		self.addCustomConstraints(
+			inView:					view,
+			toViews:				otherViews,
+			selfAttributes:			[.Top, .Leading, .Trailing],
+			otherViewAttributes:	otherViewAttributes,
+			relations:				[.Equal, .Equal, .LessThanOrEqual],
+			padding:				[topPadding, edgePadding, -edgePadding]
+		)
+	}
+	
+	public func constrainToTopRightOfView(view: UIView, topLayoutGuide: UILayoutSupport? = nil, topPadding: CGFloat = 8.0, edgePadding: CGFloat = 8.0) {
+		let otherViews: [AnyObject] = topLayoutGuide == nil ? [view, view, view] : [topLayoutGuide!, view, view]
+		let otherViewAttributes: [NSLayoutAttribute] = topLayoutGuide == nil ? [.Top, .Leading, .Trailing] : [.Bottom, .Leading, .Trailing]
+
+		self.addCustomConstraints(
+			inView:					view,
+			toViews:				otherViews,
+			selfAttributes:			[.Top, .Leading, .Trailing],
+			otherViewAttributes:	otherViewAttributes,
+			relations:				[.Equal, .GreaterThanOrEqual, .Equal],
+			padding:				[topPadding, edgePadding, -edgePadding]
+		)
+	}
+	
+	public func constrainToBottomOfView(view: UIView, bottomLayoutGuide: UILayoutSupport? = nil, bottomPadding: CGFloat = 8.0, edgePadding: CGFloat = 8.0) {
+		
+		let otherViews: [AnyObject] = bottomLayoutGuide == nil ? [view, view, view] : [bottomLayoutGuide!, view, view]
+		let otherViewAttributes: [NSLayoutAttribute] = bottomLayoutGuide == nil ? [.Bottom, .CenterX, .Width] : [.Top, .CenterX, .Width]
+
+		
+		self.addCustomConstraints(
+			inView:					view,
+			toViews:				otherViews,
+			selfAttributes:			[.Bottom, .CenterX, .Width],
+			otherViewAttributes:	otherViewAttributes,
+			relations:				[.Equal, .Equal, .LessThanOrEqual],
+			padding:				[-bottomPadding, 0, edgePadding * 2]
+		)
+	}
+	
+	public func constrainToBottomLeftOfView(view: UIView, bottomLayoutGuide: UILayoutSupport? = nil, bottomPadding: CGFloat = -8.0, edgePadding: CGFloat = 8.0) {
+		let otherViews: [AnyObject] = bottomLayoutGuide == nil ? [view, view, view] : [bottomLayoutGuide!, view, view]
+		let otherViewAttributes: [NSLayoutAttribute] = bottomLayoutGuide == nil ? [.Bottom, .Leading, .Trailing] : [.Top, .Leading, .Trailing]
+
+		self.addCustomConstraints(
+			inView:					view,
+			toViews:				otherViews,
+			selfAttributes:			[.Bottom, .Leading, .Trailing],
+			otherViewAttributes:	otherViewAttributes,
+			relations:				[.Equal, .Equal, .LessThanOrEqual],
+			padding:				[bottomPadding, edgePadding, -edgePadding]
+		)
+	}
+	
+	public func constrainToBottomRightOfView(view: UIView, bottomLayoutGuide: UILayoutSupport? = nil, bottomPadding: CGFloat = -8.0, edgePadding: CGFloat = 8.0) {
+		let otherViews: [AnyObject] = bottomLayoutGuide == nil ? [view, view, view] : [bottomLayoutGuide!, view, view]
+		let otherViewAttributes: [NSLayoutAttribute] = bottomLayoutGuide == nil ? [.Bottom, .Leading, .Trailing] : [.Top, .Leading, .Trailing]
+
+		self.addCustomConstraints(
+			inView:					view,
+			toViews:				otherViews,
+			selfAttributes:			[.Bottom, .Leading, .Trailing],
+			otherViewAttributes:	otherViewAttributes,
+			relations:				[.Equal, .GreaterThanOrEqual, .Equal],
+			padding:				[bottomPadding, edgePadding, -edgePadding]
+		)
+	}
+	
+	public func constrainAfterView(view: UIView, inView superView: UIView, allign: NSLayoutAttribute = .Top, horizontalPadding: CGFloat = 8.0, verticalPadding: CGFloat = 0.0) {
+		self.addCustomConstraints(
+			inView:					superView,
+			toViews:				[view, view],
+			selfAttributes:			[allign, .Leading],
+			otherViewAttributes:	[allign, .Trailing],
+			padding:				[verticalPadding, horizontalPadding]
+		)
+	}
+	
+	public func constrainBeforeView(view: UIView, inView superView: UIView, allign: NSLayoutAttribute = .Top, horizontalPadding: CGFloat = -8.0, verticalPadding: CGFloat = 0.0) {
+		self.addCustomConstraints(
+			inView:					superView,
+			toViews:				[view, view],
+			selfAttributes:			[allign, .Trailing],
+			otherViewAttributes:	[allign, .Leading],
+			padding:				[verticalPadding, horizontalPadding]
+		)
+	}
+	
+	public func constrainBelowView(view: UIView, inView superView: UIView, allign: NSLayoutAttribute = .Leading, horizontalPadding: CGFloat = 0.0, verticalPadding: CGFloat = 8.0) {
+		self.addCustomConstraints(
+			inView:					superView,
+			toViews:				[view, view],
+			selfAttributes:			[allign, .Top],
+			otherViewAttributes:	[allign, .Bottom],
+			padding:				[horizontalPadding, verticalPadding]
+		)
+	}
+	
+	public func constrainOnTopOfView(view: UIView, inView superView: UIView, allign: NSLayoutAttribute = .Leading, horizontalPadding: CGFloat = 0.0, verticalPadding: CGFloat = -8.0) {
+		self.addCustomConstraints(
+			inView:					superView,
+			toViews:				[view, view],
+			selfAttributes:			[allign, .Bottom],
+			otherViewAttributes:	[allign, .Top],
+			padding:				[horizontalPadding, verticalPadding]
+		)
+	}
+	
+	public func addBottomConstraint(inView superView: UIView, bottomLayoutGuide: UILayoutSupport? = nil, bottomPadding: CGFloat = -8) {
+		self.addCustomConstraints(
+			inView:					superView,
+			toViews:				bottomLayoutGuide == nil ? [superView] : [bottomLayoutGuide!],
+			selfAttributes:			[.Bottom],
+			otherViewAttributes:	bottomLayoutGuide == nil ? [.Bottom] : [.Top]
+		)
 	}
 	
 	
@@ -270,7 +561,7 @@ extension UIView {
 		}
 	}
 	
-	public func animateView(timeInterval: NSTimeInterval, delay: NSTimeInterval = 0.0, options: UIViewAnimationOptions = [], ignoreDimensions: Bool = true, newConstraintsClosure: (() -> ()), completion: (() -> ()) = {}) {
+    public func animateView(timeInterval: NSTimeInterval, delay: NSTimeInterval = 0.0, options: UIViewAnimationOptions = [], damping: CGFloat = 1.0, springVelocity: CGFloat = 1.0, ignoreDimensions: Bool = true, newConstraintsClosure: (() -> ()), completion: (() -> ()) = {}) {
 		//This ensures that the constraints are set http://corsarus.com/2015/auto-layout-and-constraints-animation/
 		UIView.animateWithDuration(0.0) { () -> Void in
 			self.superview?.layoutIfNeeded()
@@ -278,12 +569,16 @@ extension UIView {
 		
 		self.superview?.removeConstraints( ignoreDimensions ? self.addedLayoutConstraints: self.addedLayoutConstraints + self.addedDimensionConstraints)
 		newConstraintsClosure()
+        
+        UIView.animateWithDuration(timeInterval, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: springVelocity, options: options, animations: {[weak self] () -> Void in
+            self?.superview?.layoutIfNeeded()
+
+            }) { (success: Bool) -> Void in
+                completion()
+
+        }
 		
-		UIView.animateWithDuration(timeInterval, delay: delay, options: options, animations: {[weak self] () -> Void in
-			self?.superview?.layoutIfNeeded()
-			}) { (success:Bool) -> Void in
-				completion()
-		}
+
 		
 	}
 	
@@ -291,6 +586,8 @@ extension UIView {
 	
 	
 }
+
+//MARK: Initialisers
 
 public extension UITextField {
 	override class func withAutoLayout() -> UITextField {
@@ -352,6 +649,14 @@ public extension UIButton {
 		control.translatesAutoresizingMaskIntoConstraints = false
 		return control
 	}
+}
+
+public extension UIImageView {
+    override class func withAutoLayout() -> UIImageView {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }
 }
 
 public extension NSLayoutConstraint {
