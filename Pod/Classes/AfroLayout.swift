@@ -573,18 +573,27 @@ extension UIView {
         UIView.animateWithDuration(timeInterval, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: springVelocity, options: options, animations: {[weak self] () -> Void in
             self?.superview?.layoutIfNeeded()
 
-            }) { (success: Bool) -> Void in
-                completion()
-
+        }) { (success: Bool) -> Void in
+            completion()
         }
-		
-
-		
 	}
 	
-	
-	
-	
+    public func animateView(timeInterval: NSTimeInterval, delay: NSTimeInterval = 0.0, options: UIViewAnimationOptions = [], ignoreDimensions: Bool = true, newConstraintsClosure: (() -> ()), completion: (() -> ()) = {}) {
+        //This ensures that the constraints are set http://corsarus.com/2015/auto-layout-and-constraints-animation/
+        UIView.animateWithDuration(0.0) { () -> Void in
+            self.superview?.layoutIfNeeded()
+        }
+        
+        self.superview?.removeConstraints( ignoreDimensions ? self.addedLayoutConstraints: self.addedLayoutConstraints + self.addedDimensionConstraints)
+        newConstraintsClosure()
+        
+        UIView.animateWithDuration(timeInterval, delay: delay, options: options, animations: {[weak self] () -> Void in
+            self?.superview?.layoutIfNeeded()
+            
+        }) { (success: Bool) -> Void in
+            completion()
+        }
+    }
 }
 
 //MARK: Initialisers
