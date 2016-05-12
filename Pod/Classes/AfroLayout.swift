@@ -562,13 +562,7 @@ extension UIView {
 	}
 	
     public func animateView(timeInterval: NSTimeInterval, delay: NSTimeInterval = 0.0, options: UIViewAnimationOptions = [], damping: CGFloat = 1.0, springVelocity: CGFloat = 1.0, ignoreDimensions: Bool = true, newConstraintsClosure: (() -> ()), completion: (() -> ()) = {}) {
-		//This ensures that the constraints are set http://corsarus.com/2015/auto-layout-and-constraints-animation/
-		UIView.animateWithDuration(0.0) { () -> Void in
-			self.superview?.layoutIfNeeded()
-		}
-		
-		self.superview?.removeConstraints( ignoreDimensions ? self.addedLayoutConstraints: self.addedLayoutConstraints + self.addedDimensionConstraints)
-		newConstraintsClosure()
+        self.prepareForAnimation(ignoreDimensions: ignoreDimensions, newConstraintsClosure: newConstraintsClosure)
         
         UIView.animateWithDuration(timeInterval, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: springVelocity, options: options, animations: {[weak self] () -> Void in
             self?.superview?.layoutIfNeeded()
@@ -579,13 +573,7 @@ extension UIView {
 	}
 	
     public func animateView(timeInterval: NSTimeInterval, delay: NSTimeInterval = 0.0, options: UIViewAnimationOptions = [], ignoreDimensions: Bool = true, newConstraintsClosure: (() -> ()), completion: (() -> ()) = {}) {
-        //This ensures that the constraints are set http://corsarus.com/2015/auto-layout-and-constraints-animation/
-        UIView.animateWithDuration(0.0) { () -> Void in
-            self.superview?.layoutIfNeeded()
-        }
-        
-        self.superview?.removeConstraints( ignoreDimensions ? self.addedLayoutConstraints: self.addedLayoutConstraints + self.addedDimensionConstraints)
-        newConstraintsClosure()
+        self.prepareForAnimation(ignoreDimensions: ignoreDimensions, newConstraintsClosure: newConstraintsClosure)
         
         UIView.animateWithDuration(timeInterval, delay: delay, options: options, animations: {[weak self] () -> Void in
             self?.superview?.layoutIfNeeded()
@@ -593,6 +581,16 @@ extension UIView {
         }) { (success: Bool) -> Void in
             completion()
         }
+    }
+    
+    func prepareForAnimation(ignoreDimensions ignoreDimensions: Bool, newConstraintsClosure: (() -> ())) {
+        //This ensures that the constraints are set http://corsarus.com/2015/auto-layout-and-constraints-animation/
+        UIView.animateWithDuration(0.0) { () -> Void in
+            self.superview?.layoutIfNeeded()
+        }
+        
+        self.superview?.removeConstraints(ignoreDimensions ? self.addedLayoutConstraints: self.addedLayoutConstraints + self.addedDimensionConstraints)
+        newConstraintsClosure()
     }
 }
 
