@@ -57,8 +57,8 @@ extension UIView {
             self.stackHorizontallViews(stackedViews, verticalAttributes: vAttributes, verticalRelations: vRelations, verticalPaddings: verticalPaddings, gapPadding: gapPadding, leftPadding: leftPadding, rightPadding: rightPadding, rightRelation: rightRelation)
     }
 	
-	 public func stackViews(
-		stackedViews: [UIView],
+    public func stackViews(
+        stackedViews: [UIView],
         topLayoutGuide: UILayoutSupport? = nil,
 		horizontalAttributes: [[NSLayoutAttribute]]? = nil,
 		horizontalRelations: [[NSLayoutRelation]]? = nil,
@@ -66,29 +66,31 @@ extension UIView {
 		gapPadding: CGFloat = 8.0,
 		topPadding: CGFloat = 0.0,
 		bottomPadding: CGFloat = 0.0,
-		bottomRelation: NSLayoutRelation = .Equal
-		) {
-			var lastView: UIView?
-			let hAttributes: [[NSLayoutAttribute]] = self.getHorizontalAttributes(forStackViews: stackedViews, horizontalAttributes: horizontalAttributes)
-			let hRelations: [[NSLayoutRelation]] = self.getHorizontalRelations(hAttributes, horizontalRelations: horizontalRelations)
-			let hPadding: [[CGFloat]] = self.getHorizontalPadding(hAttributes, horizontalPadding: horizontalPaddings)
-			
-			for index in 0...(stackedViews.count - 1) {
-				if let nLastView = lastView {
-					
-					stackedViews[index].addCustomConstraints(inView: self, toViews: [nLastView, self, self], selfAttributes: [NSLayoutAttribute.Top] + hAttributes[index], otherViewAttributes: [NSLayoutAttribute.Bottom] + hAttributes[index], relations: [NSLayoutRelation.Equal] + hRelations[index], padding: [gapPadding] + hPadding[index])
-					
-				} else {
-                    stackedViews[index].addCustomConstraints(inView: self, toViews: topLayoutGuide == nil ? nil : [topLayoutGuide!, self, self], selfAttributes: [NSLayoutAttribute.Top] + hAttributes[index], otherViewAttributes: (topLayoutGuide == nil ?  [NSLayoutAttribute.Top] : [NSLayoutAttribute.Bottom]) + hAttributes[index], relations: [NSLayoutRelation.Equal] + hRelations[index], padding: [topPadding] + hPadding[index])
-				}
-				lastView = stackedViews[index]
-			}
-			
-			if let nLastView = lastView {
-				nLastView.addCustomConstraints(inView: self, selfAttributes: [.Bottom], otherViewAttributes: [.Bottom], relations: [bottomRelation], padding: [-bottomPadding])
-			}
-			
-			
+		bottomRelation: NSLayoutRelation = .Equal) {
+       
+        guard stackedViews.count > 0 else {
+            return
+        }
+        
+        var lastView: UIView?
+        let hAttributes: [[NSLayoutAttribute]] = self.getHorizontalAttributes(forStackViews: stackedViews, horizontalAttributes: horizontalAttributes)
+        let hRelations: [[NSLayoutRelation]] = self.getHorizontalRelations(hAttributes, horizontalRelations: horizontalRelations)
+        let hPadding: [[CGFloat]] = self.getHorizontalPadding(hAttributes, horizontalPadding: horizontalPaddings)
+        
+        for index in 0...(stackedViews.count - 1) {
+            if let nLastView = lastView {
+                
+                stackedViews[index].addCustomConstraints(inView: self, toViews: [nLastView, self, self], selfAttributes: [NSLayoutAttribute.Top] + hAttributes[index], otherViewAttributes: [NSLayoutAttribute.Bottom] + hAttributes[index], relations: [NSLayoutRelation.Equal] + hRelations[index], padding: [gapPadding] + hPadding[index])
+                
+            } else {
+                stackedViews[index].addCustomConstraints(inView: self, toViews: topLayoutGuide == nil ? nil : [topLayoutGuide!, self, self], selfAttributes: [NSLayoutAttribute.Top] + hAttributes[index], otherViewAttributes: (topLayoutGuide == nil ?  [NSLayoutAttribute.Top] : [NSLayoutAttribute.Bottom]) + hAttributes[index], relations: [NSLayoutRelation.Equal] + hRelations[index], padding: [topPadding] + hPadding[index])
+            }
+            lastView = stackedViews[index]
+        }
+        
+        if let nLastView = lastView {
+            nLastView.addCustomConstraints(inView: self, selfAttributes: [.Bottom], otherViewAttributes: [.Bottom], relations: [bottomRelation], padding: [-bottomPadding])
+        }
 	}
     
     public func stackHorizontallViews(
@@ -99,29 +101,31 @@ extension UIView {
         gapPadding: CGFloat = 8.0,
         leftPadding: CGFloat = 0.0,
         rightPadding: CGFloat = 0.0,
-        rightRelation: NSLayoutRelation = .Equal
-        ) {
-            var lastView: UIView?
-            let vAttributes: [[NSLayoutAttribute]] = self.getVerticalAttributes(forStackViews: stackedViews, verticalAttributes: verticalAttributes)
-            let vRelations: [[NSLayoutRelation]] = self.getVerticalRelations(vAttributes, verticalRelations: verticalRelations)
-            let vPadding: [[CGFloat]] = self.getVerticalPadding(vAttributes, verticalPadding: verticalPaddings)
-            
-            for index in 0...(stackedViews.count - 1) {
-                if let nLastView = lastView {
-                    
-                    stackedViews[index].addCustomConstraints(inView: self, toViews: [nLastView, self, self], selfAttributes: [NSLayoutAttribute.Left] + vAttributes[index], otherViewAttributes: [NSLayoutAttribute.Right] + vAttributes[index], relations: [NSLayoutRelation.Equal] + vRelations[index], padding: [gapPadding] + vPadding[index])
-                    
-                } else {
-                    stackedViews[index].addCustomConstraints(inView: self, selfAttributes: [NSLayoutAttribute.Left] + vAttributes[index], otherViewAttributes:  [NSLayoutAttribute.Left] + vAttributes[index], relations: [NSLayoutRelation.Equal] + vRelations[index], padding: [leftPadding] + vPadding[index])
-                }
-                lastView = stackedViews[index]
-            }
-            
+        rightRelation: NSLayoutRelation = .Equal) {
+        
+        guard stackedViews.count > 0 else {
+            return
+        }
+        
+        var lastView: UIView?
+        let vAttributes: [[NSLayoutAttribute]] = self.getVerticalAttributes(forStackViews: stackedViews, verticalAttributes: verticalAttributes)
+        let vRelations: [[NSLayoutRelation]] = self.getVerticalRelations(vAttributes, verticalRelations: verticalRelations)
+        let vPadding: [[CGFloat]] = self.getVerticalPadding(vAttributes, verticalPadding: verticalPaddings)
+        
+        for index in 0...(stackedViews.count - 1) {
             if let nLastView = lastView {
-                nLastView.addCustomConstraints(inView: self, selfAttributes: [.Right], otherViewAttributes: [.Right], relations: [rightRelation], padding: [-rightPadding])
+                
+                stackedViews[index].addCustomConstraints(inView: self, toViews: [nLastView, self, self], selfAttributes: [NSLayoutAttribute.Left] + vAttributes[index], otherViewAttributes: [NSLayoutAttribute.Right] + vAttributes[index], relations: [NSLayoutRelation.Equal] + vRelations[index], padding: [gapPadding] + vPadding[index])
+                
+            } else {
+                stackedViews[index].addCustomConstraints(inView: self, selfAttributes: [NSLayoutAttribute.Left] + vAttributes[index], otherViewAttributes:  [NSLayoutAttribute.Left] + vAttributes[index], relations: [NSLayoutRelation.Equal] + vRelations[index], padding: [leftPadding] + vPadding[index])
             }
-            
-            
+            lastView = stackedViews[index]
+        }
+        
+        if let nLastView = lastView {
+            nLastView.addCustomConstraints(inView: self, selfAttributes: [.Right], otherViewAttributes: [.Right], relations: [rightRelation], padding: [-rightPadding])
+        }
     }
 	
 	//Horizontal
@@ -561,30 +565,37 @@ extension UIView {
 		}
 	}
 	
-    public func animateView(timeInterval: NSTimeInterval, delay: NSTimeInterval = 0.0, options: UIViewAnimationOptions = [], damping: CGFloat = 1.0, springVelocity: CGFloat = 1.0, ignoreDimensions: Bool = true, newConstraintsClosure: (() -> ()), completion: (() -> ()) = {}) {
-		//This ensures that the constraints are set http://corsarus.com/2015/auto-layout-and-constraints-animation/
-		UIView.animateWithDuration(0.0) { () -> Void in
-			self.superview?.layoutIfNeeded()
-		}
-		
-		self.superview?.removeConstraints( ignoreDimensions ? self.addedLayoutConstraints: self.addedLayoutConstraints + self.addedDimensionConstraints)
-		newConstraintsClosure()
+    public func animateView(timeInterval: NSTimeInterval, delay: NSTimeInterval = 0.0, options: UIViewAnimationOptions = [], damping: CGFloat, springVelocity: CGFloat, ignoreDimensions: Bool = true, newConstraintsClosure: (() -> ()), completion: (() -> ()) = {}) {
+        self.prepareForAnimation(ignoreDimensions: ignoreDimensions, newConstraintsClosure: newConstraintsClosure)
         
         UIView.animateWithDuration(timeInterval, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: springVelocity, options: options, animations: {[weak self] () -> Void in
             self?.superview?.layoutIfNeeded()
 
-            }) { (success: Bool) -> Void in
-                completion()
-
+        }) { (success: Bool) -> Void in
+            completion()
         }
-		
-
-		
 	}
 	
-	
-	
-	
+    public func animateView(timeInterval: NSTimeInterval, delay: NSTimeInterval = 0.0, options: UIViewAnimationOptions = [], ignoreDimensions: Bool = true, newConstraintsClosure: (() -> ()), completion: (() -> ()) = {}) {
+        self.prepareForAnimation(ignoreDimensions: ignoreDimensions, newConstraintsClosure: newConstraintsClosure)
+        
+        UIView.animateWithDuration(timeInterval, delay: delay, options: options, animations: {[weak self] () -> Void in
+            self?.superview?.layoutIfNeeded()
+            
+        }) { (success: Bool) -> Void in
+            completion()
+        }
+    }
+    
+    func prepareForAnimation(ignoreDimensions ignoreDimensions: Bool, newConstraintsClosure: (() -> ())) {
+        //This ensures that the constraints are set http://corsarus.com/2015/auto-layout-and-constraints-animation/
+        UIView.animateWithDuration(0.0) { () -> Void in
+            self.superview?.layoutIfNeeded()
+        }
+        
+        self.superview?.removeConstraints(ignoreDimensions ? self.addedLayoutConstraints: self.addedLayoutConstraints + self.addedDimensionConstraints)
+        newConstraintsClosure()
+    }
 }
 
 //MARK: Initialisers

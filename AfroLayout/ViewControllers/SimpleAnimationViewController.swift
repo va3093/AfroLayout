@@ -32,12 +32,11 @@ class SimpleAnimationViewController: UIViewController {
 		self.view.addSubview(self.customView)
 		self.customView.addCustomConstraints(inView: self.view, selfAttributes: [.CenterX, .CenterY])
 		
-		self.customView.animateView(1.0, delay: 1.0, options: [.CurveEaseInOut], newConstraintsClosure: {[weak self] () -> () in
+		self.customView.animateView(1.0, delay: 1.0, options: [.CurveEaseInOut], damping: 1.0, springVelocity: 1.0, newConstraintsClosure: {[weak self] () -> () in
 			if let strongSelf = self {
 				strongSelf.customView.addCustomConstraints(inView: strongSelf.view, selfAttributes: [.CenterX, .CenterY], padding: [100, 100])
 			}
-			})
-		
+        })
 	}
 	
 	//MARK: Business Logic
