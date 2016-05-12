@@ -561,7 +561,7 @@ extension UIView {
 		}
 	}
 	
-    public func animateView(timeInterval: NSTimeInterval, delay: NSTimeInterval = 0.0, options: UIViewAnimationOptions = [], damping: CGFloat = 1.0, springVelocity: CGFloat = 1.0, ignoreDimensions: Bool = true, newConstraintsClosure: (() -> ()), completion: (() -> ()) = {}) {
+    public func animateView(timeInterval: NSTimeInterval, delay: NSTimeInterval = 0.0, options: UIViewAnimationOptions = [], damping: CGFloat, springVelocity: CGFloat, ignoreDimensions: Bool = true, newConstraintsClosure: (() -> ()), completion: (() -> ()) = {}) {
         self.prepareForAnimation(ignoreDimensions: ignoreDimensions, newConstraintsClosure: newConstraintsClosure)
         
         UIView.animateWithDuration(timeInterval, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: springVelocity, options: options, animations: {[weak self] () -> Void in
