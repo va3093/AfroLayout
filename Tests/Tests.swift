@@ -41,8 +41,19 @@ class Tests: XCTestCase {
 		XCTAssertFalse(view.validateViews(forAttributes: [.Top], views: []))
 	}
 	
-	
-	
+    func testZeroStackViewsDoesntCrash() {
+        let view = UIView()
+        let mockViews = [UIView]()
+        view.stackViews(mockViews)
+        // passes if doesnt crash
+    }
+    
+    func testZeroHorizontalStackViewsDoesntCrash() {
+        let view = UIView()
+        let mockViews = [UIView]()
+        view.stackHorizontallViews(mockViews)
+        // passes if doesnt crash
+    }
 }
 
 extension UIView {
