@@ -346,7 +346,7 @@ extension UIView {
         return isValid
     }
     
-    public func addDimensions(width: CGFloat? = nil, height: CGFloat? = nil, widthRelation: NSLayoutRelation = .equal, heightRelation: NSLayoutRelation = .equal) {
+    public func addDimensions(_ width: CGFloat? = nil, height: CGFloat? = nil, widthRelation: NSLayoutRelation = .equal, heightRelation: NSLayoutRelation = .equal) {
         if let w : CGFloat = width {
             let constraints: [NSLayoutConstraint] = [
                 NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.width, relatedBy: widthRelation, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1.0, constant: w),
@@ -566,7 +566,7 @@ extension UIView {
     }
     
     public func animateView(_ timeInterval: TimeInterval, delay: TimeInterval = 0.0, options: UIViewAnimationOptions = [], damping: CGFloat, springVelocity: CGFloat, ignoreDimensions: Bool = true, newConstraintsClosure: (() -> ()), completion: @escaping (() -> ()) = {}) {
-        self.prepareForAnimation(ignoreDimensions: ignoreDimensions, newConstraintsClosure: newConstraintsClosure)
+        self.prepareForAnimation(ignoreDimensions, newConstraintsClosure: newConstraintsClosure)
         
         UIView.animate(withDuration: timeInterval, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: springVelocity, options: options, animations: {[weak self] () -> Void in
             self?.superview?.layoutIfNeeded()
@@ -577,7 +577,7 @@ extension UIView {
     }
     
     public func animateView(_ timeInterval: TimeInterval, delay: TimeInterval = 0.0, options: UIViewAnimationOptions = [], ignoreDimensions: Bool = true, newConstraintsClosure: (() -> ()), completion: @escaping (() -> ()) = {}) {
-        self.prepareForAnimation(ignoreDimensions: ignoreDimensions, newConstraintsClosure: newConstraintsClosure)
+        self.prepareForAnimation(ignoreDimensions, newConstraintsClosure: newConstraintsClosure)
         
         UIView.animate(withDuration: timeInterval, delay: delay, options: options, animations: {[weak self] () -> Void in
             self?.superview?.layoutIfNeeded()
@@ -587,7 +587,7 @@ extension UIView {
         }
     }
     
-    func prepareForAnimation(ignoreDimensions: Bool, newConstraintsClosure: (() -> ())) {
+    func prepareForAnimation(_ ignoreDimensions: Bool, newConstraintsClosure: (() -> ())) {
         //This ensures that the constraints are set http://corsarus.com/2015/auto-layout-and-constraints-animation/
         UIView.animate(withDuration: 0.0, animations: { () -> Void in
             self.superview?.layoutIfNeeded()
