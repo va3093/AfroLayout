@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "AfroLayout"
-  s.version          = "1.0.0"
+  s.version          = "3.0.0"
   s.summary          = "AfroLayout is a swift library that puts the auto back into AutoLayout."
 
 # This description is used to generate tags and improve search results.
